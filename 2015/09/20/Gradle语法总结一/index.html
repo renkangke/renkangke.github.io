@@ -1,0 +1,775 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,Gradle," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="序
+当前的构建工作中，Gradle是非常火的一个。Google更是将其与Android Studio一起打包，强推。
+
+build
+依据不同的工序，处理你的代码，将之处理成你想要的各种东西
+
+年代史Ant –&amp;gt; Maven –&amp;gt; Gradle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gradle语法总结一">
+<meta property="og:url" content="http://renkangke.github.io/2015/09/20/Gradle语法总结一/index.html">
+<meta property="og:site_name" content="Ren Kangke's Blog">
+<meta property="og:description" content="序
+当前的构建工作中，Gradle是非常火的一个。Google更是将其与Android Studio一起打包，强推。
+
+build
+依据不同的工序，处理你的代码，将之处理成你想要的各种东西
+
+年代史Ant –&amp;gt; Maven –&amp;gt; Gradle">
+<meta property="og:updated_time" content="2016-06-08T08:58:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Gradle语法总结一">
+<meta name="twitter:description" content="序
+当前的构建工作中，Gradle是非常火的一个。Google更是将其与Android Studio一起打包，强推。
+
+build
+依据不同的工序，处理你的代码，将之处理成你想要的各种东西
+
+年代史Ant –&amp;gt; Maven –&amp;gt; Gradle">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://renkangke.github.io/2015/09/20/Gradle语法总结一/"/>
+
+  <title> Gradle语法总结一 | Ren Kangke's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Ren Kangke's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Focus on Android, Java, Performance Optimization, Open Source/Thought change lives</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/tags/技术" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-mobile-phone"></i> <br />
+            
+            menu.tech
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-essay">
+          <a href="/tags/随笔" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-coffee"></i> <br />
+            
+            menu.essay
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/2014/09/10/关于我/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Gradle语法总结一
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-09-20T22:06:10+08:00" content="Sep 20 2015">
+              Sep 20 2015
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/20/Gradle语法总结一/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/20/Gradle语法总结一/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><blockquote>
+<p>当前的构建工作中，<code>Gradle</code>是非常火的一个。<br><code>Google</code>更是将其与<code>Android Studio</code>一起打包，强推。</p>
+</blockquote>
+<h2 id="build"><a href="#build" class="headerlink" title="build"></a>build</h2><blockquote>
+<p>依据不同的工序，处理你的代码，将之处理成你想要的各种东西</p>
+</blockquote>
+<h2 id="年代史"><a href="#年代史" class="headerlink" title="年代史"></a>年代史</h2><p><code>Ant</code> –&gt; <code>Maven</code> –&gt; <code>Gradle</code></p>
+<a id="more"></a>
+<h2 id="根基"><a href="#根基" class="headerlink" title="根基"></a>根基</h2><blockquote>
+<p><code>Maven</code>编译规则是用<code>XML</code>来编写<br><code>Gradle</code>基础是<code>Groovy</code>语言、这个必须掌握<br><code>Groovy</code>基于<code>Java</code>并且<strong>拓展</strong><br><code>Groovy</code>是一门动态语言</p>
+</blockquote>
+<h2 id="Groovy倒底是什么？"><a href="#Groovy倒底是什么？" class="headerlink" title="Groovy倒底是什么？"></a>Groovy倒底是什么？</h2><p><strong>Groovy是在 java平台上的、 具有像Python， Ruby 和 Smalltalk 语言特性的灵活动态语言， Groovy保证了这些特性像 Java语法一样被 Java开发者使用</strong> </p>
+<h2 id="待续（这个题目内容还是蛮多的）"><a href="#待续（这个题目内容还是蛮多的）" class="headerlink" title="待续（这个题目内容还是蛮多的）"></a>待续（这个题目内容还是蛮多的）</h2><h2 id="Basic-Setting"><a href="#Basic-Setting" class="headerlink" title="Basic Setting"></a>Basic Setting</h2><ul>
+<li><code>build.gradle</code>配置</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line"> repositories &#123;</span><br><span class="line">     jcenter() </span><br><span class="line"> &#125;</span><br><span class="line"> dependencies &#123;</span><br><span class="line">     classpath &apos;com.android.tools.build:gradle:1.2.3&apos;</span><br><span class="line"> &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>其中 <code>jcenter()</code>是默认中央<code>maven</code>库.<br>下面<code>dependencies</code>中的<code>classpath</code>是编译时<code>gradle</code>的版本</p>
+</blockquote>
+<ul>
+<li>Android Application</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: &apos;com.android.application&apos;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Android Library</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: &apos;com.android.library&apos;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Maven</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: &apos;maven&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>以上其中 <code>apply plugin</code>是应用的插件，第一个是<code>Android</code>应用，第二个是<code>Android</code>库，第三个是当使用了<code>maven</code>的语法，需要引入它</p>
+</blockquote>
+<ul>
+<li>编译SDK相关配置</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line"> compileSdkVersion 22</span><br><span class="line"> buildToolsVersion &quot;22.0.1&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Project Structure</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">app</span><br><span class="line">├── build.gradle</span><br><span class="line">├── settings.gradle</span><br><span class="line">└── app</span><br><span class="line">    ├── build.gradle</span><br><span class="line">    ├── build</span><br><span class="line">    ├── libs</span><br><span class="line">    └── src</span><br><span class="line">        └── main</span><br><span class="line">            ├── java</span><br><span class="line">            │   └── com.package.myapp</span><br><span class="line">            └── res</span><br><span class="line">                ├── drawable</span><br><span class="line">                ├── layout</span><br><span class="line">                └── etc.</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>Gradle Wrapper</code>结构</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app/</span><br><span class="line"> ├── gradlew </span><br><span class="line"> ├── gradlew.bat</span><br><span class="line"> └── gradle/wrapper/</span><br><span class="line">     ├── gradle-wrapper.jar</span><br><span class="line">     └── gradle-wrapper.properties</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/Gradle/" rel="tag">#Gradle</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/13/Git-Magic/" rel="next" title="Git Magic">
+                <i class="fa fa-chevron-left"></i> Git Magic
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/09/27/Hybird开发之webView所有请求拦截及修改功能/" rel="prev" title="Android-hybird开发之webView所有请求拦截及修改功能">
+                Android-hybird开发之webView所有请求拦截及修改功能 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/09/20/Gradle语法总结一/"
+     data-title="Gradle语法总结一"
+     data-content=""
+     data-url="http://renkangke.github.io/2015/09/20/Gradle语法总结一/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/09/20/Gradle语法总结一/"
+           data-title="Gradle语法总结一" data-url="http://renkangke.github.io/2015/09/20/Gradle语法总结一/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ww1.sinaimg.cn/large/65c8b1c5jw1ew2brnos75j20cs0csdgr.jpg"
+               alt="RenKangke" />
+          <p class="site-author-name" itemprop="name">RenKangke</p>
+          <p class="site-description motion-element" itemprop="description">Android\iOS\Open Source</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/renkangke" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/conquermin" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="/atom.xml" target="_blank" title="rss">
+                  
+                    <i class="fa fa-fw fa-rss"></i>
+                  
+                  rss
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/+renkangker/posts" target="_blank" title="google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                  google
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/ConquerRen" target="_blank" title="twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/renkangke" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.douban.com/people/renkangke/" target="_blank" title="douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:renkangke@gmail.com" target="_blank" title="mail">
+                  
+                    <i class="fa fa-fw fa-mail-reply"></i>
+                  
+                  mail
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#序"><span class="nav-number">1.</span> <span class="nav-text">序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#build"><span class="nav-number">2.</span> <span class="nav-text">build</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#年代史"><span class="nav-number">3.</span> <span class="nav-text">年代史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#根基"><span class="nav-number">4.</span> <span class="nav-text">根基</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Groovy倒底是什么？"><span class="nav-number">5.</span> <span class="nav-text">Groovy倒底是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#待续（这个题目内容还是蛮多的）"><span class="nav-number">6.</span> <span class="nav-text">待续（这个题目内容还是蛮多的）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-Setting"><span class="nav-number">7.</span> <span class="nav-text">Basic Setting</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">RenKangke</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"conquerren"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

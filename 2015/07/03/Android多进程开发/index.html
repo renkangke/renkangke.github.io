@@ -1,0 +1,754 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,多进程," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="开始即为成功的一半，占位先
+Processes and Threadslink
+
+假设有一个Android应用程序名字叫做DemoA。
+前提条件：DemoA完全没有任何组件在运行。
+时机:当DemoA开始启动运行时。
+现象1：Android系统会为这个应用程序启动一个新的Linux进程并且运行一个单独的线程。
+现象2：在默认情况下，同一个应用的所有组织会运行在相同的一个进程以及相同的一个线程（也被">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android多进程开发">
+<meta property="og:url" content="http://renkangke.github.io/2015/07/03/Android多进程开发/index.html">
+<meta property="og:site_name" content="Ren Kangke's Blog">
+<meta property="og:description" content="开始即为成功的一半，占位先
+Processes and Threadslink
+
+假设有一个Android应用程序名字叫做DemoA。
+前提条件：DemoA完全没有任何组件在运行。
+时机:当DemoA开始启动运行时。
+现象1：Android系统会为这个应用程序启动一个新的Linux进程并且运行一个单独的线程。
+现象2：在默认情况下，同一个应用的所有组织会运行在相同的一个进程以及相同的一个线程（也被">
+<meta property="og:updated_time" content="2016-06-08T08:58:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android多进程开发">
+<meta name="twitter:description" content="开始即为成功的一半，占位先
+Processes and Threadslink
+
+假设有一个Android应用程序名字叫做DemoA。
+前提条件：DemoA完全没有任何组件在运行。
+时机:当DemoA开始启动运行时。
+现象1：Android系统会为这个应用程序启动一个新的Linux进程并且运行一个单独的线程。
+现象2：在默认情况下，同一个应用的所有组织会运行在相同的一个进程以及相同的一个线程（也被">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://renkangke.github.io/2015/07/03/Android多进程开发/"/>
+
+  <title> Android多进程开发 | Ren Kangke's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Ren Kangke's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Focus on Android, Java, Performance Optimization, Open Source/Thought change lives</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/tags/技术" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-mobile-phone"></i> <br />
+            
+            menu.tech
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-essay">
+          <a href="/tags/随笔" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-coffee"></i> <br />
+            
+            menu.essay
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/2014/09/10/关于我/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android多进程开发
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-07-03T17:57:14+08:00" content="Jul 3 2015">
+              Jul 3 2015
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/07/03/Android多进程开发/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/03/Android多进程开发/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>开始即为成功的一半，占位先</p>
+<h3 id="Processes-and-Threads"><a href="#Processes-and-Threads" class="headerlink" title="Processes and Threads"></a>Processes and Threads</h3><p><a href="http://developer.android.com/guide/components/processes-and-threads.html" target="_blank" rel="external">link</a></p>
+<ol>
+<li>假设有一个Android应用程序名字叫做DemoA。</li>
+<li>前提条件：DemoA完全没有任何组件在运行。</li>
+<li>时机:当DemoA开始启动运行时。</li>
+<li>现象1：Android系统会为这个应用程序启动一个新的Linux进程并且运行一个单独的线程。</li>
+<li>现象2：在默认情况下，同一个应用的所有组织会运行在相同的一个进程以及相同的一个线程（也被称为<code>主线程||UI线程</code>）中。如果一个应用程序的组件启动时，系统中已经存在这个应用运行的进程（因为应用程序中已经有其它组件在运行），此时这个组件会运行在当前这个进程以及线程中。</li>
+<li>当然，我们可以运行不同的组织在自己单独的进程中，并且我们可以为任一进程创建额外的线程。</li>
+</ol>
+<a id="more"></a>
+<h4 id="Processes"><a href="#Processes" class="headerlink" title="Processes"></a>Processes</h4><p>通常情况下，我们的所有组件都是运行在同一个进程中，但是如果我们想让某些组件运行在特定的进程中，我们可以在<code>AndroidManifest.xml</code>中使用如下方法去控制，其中四大组件（<code>activity</code>,<code>service</code>,<code>receiver</code>,<code>provider</code>,）都支持以下属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:process = &quot;&quot;</span><br></pre></td></tr></table></figure>
+<p>用上述属性你可以做到以下事情：</p>
+<ol>
+<li>不同的组件在不同的进程中</li>
+<li>一些组件共享一个进程</li>
+<li>甚至不同应用的组件在相同的进程中（前提条件：这些应用共享相同的Linux User ID以及相同的签名证书）</li>
+<li><code>application</code>同样支持这一属性，这意味着可以为所有组件设置默认值。</li>
+</ol>
+<p>系统会在内存不足而其它进程需要立即用户响应时杀掉当前进程、此时进程内所有组件会被销毁。当这些组件需要重新启动时进程才会重新启动</p>
+<p>系统会根据进程的权重来决定杀死哪个进程</p>
+<h3 id="Process-lifecycle"><a href="#Process-lifecycle" class="headerlink" title="Process lifecycle"></a>Process lifecycle</h3>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/多进程/" rel="tag">#多进程</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/02/用gradle编译任意结构的Android项目/" rel="next" title="用gradle编译任意结构的Android项目">
+                <i class="fa fa-chevron-left"></i> 用gradle编译任意结构的Android项目
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/05/周末小记/" rel="prev" title="周末小记">
+                周末小记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/07/03/Android多进程开发/"
+     data-title="Android多进程开发"
+     data-content=""
+     data-url="http://renkangke.github.io/2015/07/03/Android多进程开发/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/07/03/Android多进程开发/"
+           data-title="Android多进程开发" data-url="http://renkangke.github.io/2015/07/03/Android多进程开发/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ww1.sinaimg.cn/large/65c8b1c5jw1ew2brnos75j20cs0csdgr.jpg"
+               alt="RenKangke" />
+          <p class="site-author-name" itemprop="name">RenKangke</p>
+          <p class="site-description motion-element" itemprop="description">Android\iOS\Open Source</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/renkangke" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/conquermin" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="/atom.xml" target="_blank" title="rss">
+                  
+                    <i class="fa fa-fw fa-rss"></i>
+                  
+                  rss
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/+renkangker/posts" target="_blank" title="google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                  google
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/ConquerRen" target="_blank" title="twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/renkangke" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.douban.com/people/renkangke/" target="_blank" title="douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:renkangke@gmail.com" target="_blank" title="mail">
+                  
+                    <i class="fa fa-fw fa-mail-reply"></i>
+                  
+                  mail
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Processes-and-Threads"><span class="nav-number">1.</span> <span class="nav-text">Processes and Threads</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Processes"><span class="nav-number">1.1.</span> <span class="nav-text">Processes</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Process-lifecycle"><span class="nav-number">2.</span> <span class="nav-text">Process lifecycle</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">RenKangke</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"conquerren"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
