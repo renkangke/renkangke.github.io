@@ -332,36 +332,36 @@ JS调用Android中的方法
 <h2 id="JS调用Android中的方法"><a href="#JS调用Android中的方法" class="headerlink" title="JS调用Android中的方法"></a>JS调用Android中的方法</h2><ul>
 <li>首页要在Webview中注入Android中的java对象</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mWebView.addJavascriptInterface(new JavaObject(), &quot;YouAliasName&quot;;</span><br></pre></td></tr></table></figure>
-<p>例如： JavaObject()中有这样一个方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@JavascriptInterface</span><br><span class="line">   public void toast(String toast) &#123;</span><br><span class="line">       ToastUtils.show(mContext, uiToast.getMessage());</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mWebView.addJavascriptInterface(new JavaObject(), &quot;YouAliasName&quot;;</div></pre></td></tr></table></figure>
+<p>例如： JavaObject()中有这样一个方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@JavascriptInterface</div><div class="line">   public void toast(String toast) &#123;</div><div class="line">       ToastUtils.show(mContext, uiToast.getMessage());</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <ul>
 <li><p>注入后这样调用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">YouAliasName.toast(&apos;this is web toast&apos;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">YouAliasName.toast(&apos;this is web toast&apos;)</div></pre></td></tr></table></figure>
 </li>
 <li><p>注意事项：<br>  如果是4.2以上版本，调用的方法必须加上’@JavascriptInterface’注解，否则方法会注入失败，无法调用。</p>
 </li>
 </ul>
 <h2 id="Android中调用JS中的方法"><a href="#Android中调用JS中的方法" class="headerlink" title="Android中调用JS中的方法"></a>Android中调用JS中的方法</h2><p>非常简单，直接</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mWebView.loadUrl(&quot;javascript:(&quot; + mMethodName + &quot;)(&apos;&quot; + mJSONArgument + &quot;&apos;)&quot;;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mWebView.loadUrl(&quot;javascript:(&quot; + mMethodName + &quot;)(&apos;&quot; + mJSONArgument + &quot;&apos;)&quot;;)</div></pre></td></tr></table></figure>
 <h2 id="其它说明"><a href="#其它说明" class="headerlink" title="其它说明"></a>其它说明</h2><ul>
 <li>以上两个可以进行封装一下，更加方便调用</li>
 <li>建议全部是异步回调，参数用Json封装</li>
 <li>Android 4.4之后可以使用evaluateJavascript进行异步回调</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">private void testEvaluateJavascript(WebView webView) &#123;</span><br><span class="line">      webView.evaluateJavascript(&quot;test()&quot;,</span><br><span class="line">              new ValueCallback&lt;String&gt;() &#123;</span><br><span class="line">                  @Override</span><br><span class="line">                  public void onReceiveValue(String value) &#123;</span><br><span class="line"></span><br><span class="line">                      Log.i(LOGTAG, &quot;onReceiveValue value=&quot; + value);</span><br><span class="line"></span><br><span class="line">                  &#125;</span><br><span class="line">              &#125;);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">private void testEvaluateJavascript(WebView webView) &#123;</div><div class="line">      webView.evaluateJavascript(&quot;test()&quot;,</div><div class="line">              new ValueCallback&lt;String&gt;() &#123;</div><div class="line">                  @Override</div><div class="line">                  public void onReceiveValue(String value) &#123;</div><div class="line"></div><div class="line">                      Log.i(LOGTAG, &quot;onReceiveValue value=&quot; + value);</div><div class="line"></div><div class="line">                  &#125;</div><div class="line">              &#125;);</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
 <ul>
 <li>js回调后，要在主线程运行，否则会报错</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mWebView.post(new Runnable() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        mWebView.loadUrl(YOUR_URL).</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mWebView.post(new Runnable() &#123;</div><div class="line">    @Override</div><div class="line">    public void run() &#123;</div><div class="line">        mWebView.loadUrl(YOUR_URL).</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <ul>
 <li><p>Alert无法弹出的问题</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 你应该是没有设置WebChromeClient,按照以下代码设置</span><br><span class="line">mWebView.setWebChromeClient(new WebChromeClient() &#123;&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 你应该是没有设置WebChromeClient,按照以下代码设置</div><div class="line">mWebView.setWebChromeClient(new WebChromeClient() &#123;&#125;);</div></pre></td></tr></table></figure>
 </li>
 <li><p>js代码可能没有加载完成就调用了js方法，此时会报错：<code>Uncaught ReferenceError: functionName is not defined</code></p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mWebView.setWebViewClient(new WebViewClient() &#123;</span><br><span class="line"></span><br><span class="line">           @Override</span><br><span class="line">           public void onPageFinished(WebView view, String url) &#123;</span><br><span class="line">               super.onPageFinished(view, url);</span><br><span class="line">               //在这里执行你想调用的js函数</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">mWebView.setWebViewClient(new WebViewClient() &#123;</div><div class="line"></div><div class="line">           @Override</div><div class="line">           public void onPageFinished(WebView view, String url) &#123;</div><div class="line">               super.onPageFinished(view, url);</div><div class="line">               //在这里执行你想调用的js函数</div><div class="line">           &#125;</div><div class="line"></div><div class="line">       &#125;);</div></pre></td></tr></table></figure>
 <ul>
 <li>代码混淆问题 需要 -keep class 你的js调用方法类</li>
 </ul>
@@ -503,7 +503,7 @@ JS调用Android中的方法
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -513,7 +513,7 @@ JS调用Android中的方法
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -635,7 +635,7 @@ JS调用Android中的方法
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

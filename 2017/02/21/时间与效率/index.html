@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android,技术," />
+  <meta name="keywords" content="时间，效率，思考," />
 
 
 
@@ -84,19 +84,34 @@
 
 
 
-<meta name="description" content="记一个ViewPager-with-Fragments-inside-PopupWindow-的坑。
-当时实现的一个场景是：在popupwindow中需要实现一个可以左右滑动很多页的viewpager">
+<meta name="description" content="一般很久未写文章，待从头，不免感叹一声，呜呼哀哉！反思良久，为自己找到如下三个借口(生活不易啊)：
+
+前段时间着实忙碌，其实xxx有句名言说的好：时间就像乳沟，挤挤总会有的。
+千万不可小瞧人的惰性，这力量是无穷尽的。
+不要一味追求完美，先开始再说！
+
+今天要讨论的话题是时间与效率。也是我最近在思考的问题。时间的残酷无情催生出了我们对效率的渴望，纵观当今世界，大部分公司都在做着提升效率的事情，Goo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="记一个ViewPager-with-Fragments-inside-PopupWindow-的坑">
-<meta property="og:url" content="http://renkangke.github.io/2015/05/06/记一个ViewPager-with-Fragments-inside-PopupWindow-的坑/index.html">
+<meta property="og:title" content="时间与效率">
+<meta property="og:url" content="http://renkangke.github.io/2017/02/21/时间与效率/index.html">
 <meta property="og:site_name" content="Ren Kangke's Blog">
-<meta property="og:description" content="记一个ViewPager-with-Fragments-inside-PopupWindow-的坑。
-当时实现的一个场景是：在popupwindow中需要实现一个可以左右滑动很多页的viewpager">
-<meta property="og:updated_time" content="2016-06-08T08:58:43.000Z">
+<meta property="og:description" content="一般很久未写文章，待从头，不免感叹一声，呜呼哀哉！反思良久，为自己找到如下三个借口(生活不易啊)：
+
+前段时间着实忙碌，其实xxx有句名言说的好：时间就像乳沟，挤挤总会有的。
+千万不可小瞧人的惰性，这力量是无穷尽的。
+不要一味追求完美，先开始再说！
+
+今天要讨论的话题是时间与效率。也是我最近在思考的问题。时间的残酷无情催生出了我们对效率的渴望，纵观当今世界，大部分公司都在做着提升效率的事情，Goo">
+<meta property="og:updated_time" content="2017-03-01T04:02:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="记一个ViewPager-with-Fragments-inside-PopupWindow-的坑">
-<meta name="twitter:description" content="记一个ViewPager-with-Fragments-inside-PopupWindow-的坑。
-当时实现的一个场景是：在popupwindow中需要实现一个可以左右滑动很多页的viewpager">
+<meta name="twitter:title" content="时间与效率">
+<meta name="twitter:description" content="一般很久未写文章，待从头，不免感叹一声，呜呼哀哉！反思良久，为自己找到如下三个借口(生活不易啊)：
+
+前段时间着实忙碌，其实xxx有句名言说的好：时间就像乳沟，挤挤总会有的。
+千万不可小瞧人的惰性，这力量是无穷尽的。
+不要一味追求完美，先开始再说！
+
+今天要讨论的话题是时间与效率。也是我最近在思考的问题。时间的残酷无情催生出了我们对效率的渴望，纵观当今世界，大部分公司都在做着提升效率的事情，Goo">
 
 
 
@@ -117,9 +132,9 @@
 
 
 
-  <link rel="canonical" href="http://renkangke.github.io/2015/05/06/记一个ViewPager-with-Fragments-inside-PopupWindow-的坑/"/>
+  <link rel="canonical" href="http://renkangke.github.io/2017/02/21/时间与效率/"/>
 
-  <title> 记一个ViewPager-with-Fragments-inside-PopupWindow-的坑 | Ren Kangke's Blog </title>
+  <title> 时间与效率 | Ren Kangke's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -269,7 +284,7 @@
             
             
               
-                记一个ViewPager-with-Fragments-inside-PopupWindow-的坑
+                时间与效率
               
             
           </h1>
@@ -281,8 +296,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-05-06T11:54:32+08:00" content="May 6 2015">
-              May 6 2015
+            <time itemprop="dateCreated" datetime="2017-02-21T23:42:24+08:00" content="Feb 21 2017">
+              Feb 21 2017
             </time>
           </span>
 
@@ -292,8 +307,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/05/06/记一个ViewPager-with-Fragments-inside-PopupWindow-的坑/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/06/记一个ViewPager-with-Fragments-inside-PopupWindow-的坑/" itemprop="commentsCount"></span>
+                <a href="/2017/02/21/时间与效率/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/21/时间与效率/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -316,13 +331,77 @@
       
 
       
-        <p>记一个ViewPager-with-Fragments-inside-PopupWindow-的坑。</p>
-<p>当时实现的一个场景是：在popupwindow中需要实现一个可以左右滑动很多页的viewpager</p>
+        <p>一般很久未写文章，待从头，不免感叹一声，呜呼哀哉！反思良久，为自己找到如下三个借口(生活不易啊)：</p>
+<ol>
+<li>前段时间着实忙碌，其实xxx有句名言说的好：时间就像乳沟，挤挤总会有的。</li>
+<li>千万不可小瞧人的惰性，这力量是无穷尽的。</li>
+<li>不要一味追求完美，先开始再说！</li>
+</ol>
+<p>今天要讨论的话题是时间与效率。也是我最近在思考的问题。时间的残酷无情催生出了我们对效率的渴望，纵观当今世界，大部分公司都在做着提升效率的事情，Google提升搜索效率， Uber提升出行效率，微信提升沟通效率，阿里提升购物效率，工具的本质皆是如此。所以效率的重要性自不用多说。下文是我部分关于时间与效率的思考，仅供大家参考。</p>
 <a id="more"></a>
-<p>ViewPager with Fragments inside PopupWindow (or DialogFragment) </p>
-<p>会出现一个错误： Error no view found for id for fragment</p>
-<p>我跟到最后，发现这是Android系统的一个bug， 最终的解决方案是不要用fragment在popupwindow中<br>可以换成view在pageadaper中，这样就可以了</p>
-<p>这个坑当时我查阅了很久，在github和stackoverflow上也都有人问类似问题，特记录于此</p>
+<h2 id="一、关于时间的残酷事实"><a href="#一、关于时间的残酷事实" class="headerlink" title="一、关于时间的残酷事实"></a>一、关于时间的残酷事实</h2><ul>
+<li>对于时间，需要认清以下事实：</li>
+</ul>
+<ol>
+<li>每个人每天的时间总量是固定的。</li>
+<li>每个人剩下的时间都是在不断减少不会停止的。</li>
+<li>每个人剩下的时间可能随时为0。</li>
+<li>1万天为27年，如果你现在23岁，再过1万天，你就50岁了……（多么恐怖的事实）。</li>
+<li>每个人大部分时间都花在了睡觉、吃饭、洗漱，上卫生间。</li>
+</ol>
+<ul>
+<li>有人粗略估算了一生花费的时间：</li>
+</ul>
+<ol>
+<li>站立：30年</li>
+<li>睡觉：23年</li>
+<li>工作：10-12年</li>
+<li>吃饭：6年</li>
+<li>看电视：6年</li>
+<li>……</li>
+</ol>
+<ul>
+<li>所以人生苦短啊，小伙伴们！</li>
+</ul>
+<h2 id="二、关于效率的提升技巧"><a href="#二、关于效率的提升技巧" class="headerlink" title="二、关于效率的提升技巧"></a>二、关于效率的提升技巧</h2><p>上面列举的事实触目惊心，既然时间如此宝贵，那我们能否在时间总长度无法改变且时间不断流逝的情况下做点什么呢？我们希望在有限的时间里做更多自己想做的有趣的有意义的事情，而非把时间和生命浪费在无意义的小事杂事琐事上。我们只有不断提高效率将自己不得不做，又没什么意思的琐事速度做完，用节省出来时间来做自己想做的事，学习提升自己，看更大的世界，探索更多有趣的事，扩展生命的宽度(不断装逼中…)</p>
+<p>终于引申到我们本节要讲述的话题：</p>
+<blockquote>
+<p><strong>提升效率</strong></p>
+</blockquote>
+<p>物理上对于机械效率的定义：机械输出功（<strong>有用功</strong>）和输入功（<strong>总功</strong>）的比值。</p>
+<p>由此可见，有两种大的方向提升效率</p>
+<ol>
+<li>增大总功的时间</li>
+<li>减少做有用功能的时间</li>
+</ol>
+<h3 id="1-增大总功的时间"><a href="#1-增大总功的时间" class="headerlink" title="1. 增大总功的时间"></a>1. 增大总功的时间</h3><h4 id="a-多线程处理，同时做多件事。"><a href="#a-多线程处理，同时做多件事。" class="headerlink" title="a. 多线程处理，同时做多件事。"></a>a. 多线程处理，同时做多件事。</h4><p>主要是身体的活动和大脑的活动的同步进行。这样可以增加你的大脑被占满思考的时间。比如：</p>
+<ul>
+<li>运动，例如：跑步时听英语，听书，思考</li>
+<li>出行，例如：做地铁时看书，活动身体</li>
+<li>洗漱，例如：刷下时思考一些问题</li>
+</ul>
+<h4 id="b-强身健体。"><a href="#b-强身健体。" class="headerlink" title="b. 强身健体。"></a>b. 强身健体。</h4><p>只有健康的身体，才能每天有更多的精力学习，思考，游玩，做很多自己想做的事。健康是一件很重要的事，人的身体其实是很脆弱的。有很多问题是医学无法治愈的，当你的身体出了某些问题时，而医学又很难解决时，你会非常痛苦，这会占用你大量的时间。</p>
+<ul>
+<li>运动和学习要做到适度。<ul>
+<li>运动过度：经常会导致半月板受伤，韧带拉伤等疾病。</li>
+<li>学习过度：现代社会，有了手机和电脑，加之人的颈椎、脊柱、背部、腰部、膝盖关节等都很脆弱，很多人都有颈椎病、肩周炎、筋膜炎，腰肌劳损，腰间盘突出等问题。这些疾病是医生无法治愈的，伴随终生，非常痛苦，极大地消耗精力，影响学习，思考。</li>
+<li>解决方案：不过有这些问题，也不要沮丧，良好的生活习惯和运动恢复能极大的缓解痛苦。身体为一切之本，切记切记。<ul>
+<li>正解的生活习惯，坐姿和站姿要注意</li>
+<li>用手机时间不要过久(可能导致肩周炎)</li>
+<li>有计划的锻炼（比如游泳等）</li>
+<li>注意一些激烈运动的运动前热身和运动保护，以及正确的姿势(例如不当的羽毛球姿势和过度运动会毁了你的膝盖)</li>
+<li>科学的饮食</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-减少做有用功所花费的时间"><a href="#2-减少做有用功所花费的时间" class="headerlink" title="2. 减少做有用功所花费的时间"></a>2. 减少做有用功所花费的时间</h3><p>这里有两点要注意：</p>
+<ul>
+<li>有用功：要确保做的是正确的事，当然什么是正确的事还需要你自己去判断。</li>
+</ul>
+<h4 id="1-尽量做正确的事"><a href="#1-尽量做正确的事" class="headerlink" title="1. 尽量做正确的事"></a>1. 尽量做正确的事</h4><p>不正确的事，即使提高效率做完也没有很大的意义，比如刷朋友圈</p>
+<h4 id="2-尽快地完成生活中的琐事"><a href="#2-尽快地完成生活中的琐事" class="headerlink" title="2. 尽快地完成生活中的琐事"></a>2. 尽快地完成生活中的琐事</h4><h4 id="3-尽快地完成工作上的事"><a href="#3-尽快地完成工作上的事" class="headerlink" title="3. 尽快地完成工作上的事"></a>3. 尽快地完成工作上的事</h4><h4 id="4-提高学习，思考、记忆的效率"><a href="#4-提高学习，思考、记忆的效率" class="headerlink" title="4. 提高学习，思考、记忆的效率"></a>4. 提高学习，思考、记忆的效率</h4><p>ps: 未完待续（先上传这一部分吧）</p>
 
       
     </div>
@@ -344,9 +423,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag">#Android</a>
-          
-            <a href="/tags/技术/" rel="tag">#技术</a>
+            <a href="/tags/时间，效率，思考/" rel="tag">#时间，效率，思考</a>
           
         </div>
       
@@ -355,17 +432,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/04/24/关于自定义EditText长按复制的各种问题/" rel="next" title="自定义点击取词长按复制textView">
-                <i class="fa fa-chevron-left"></i> 自定义点击取词长按复制textView
+              <a href="/2016/01/22/用Android-Studio进行NDK开发的方法/" rel="next" title="用Android Studio进行NDK开发的方法">
+                <i class="fa fa-chevron-left"></i> 用Android Studio进行NDK开发的方法
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/05/12/关于内存清理、getLocationOnScreen、类型转换等要注意的点的记录/" rel="prev" title="关于内存清理|getLocationOnScreen|类型转换等要注意的点的记录">
-                关于内存清理|getLocationOnScreen|类型转换等要注意的点的记录 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -380,10 +453,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/05/06/记一个ViewPager-with-Fragments-inside-PopupWindow-的坑/"
-     data-title="记一个ViewPager-with-Fragments-inside-PopupWindow-的坑"
+        <div class="ds-share flat" data-thread-key="2017/02/21/时间与效率/"
+     data-title="时间与效率"
      data-content=""
-     data-url="http://renkangke.github.io/2015/05/06/记一个ViewPager-with-Fragments-inside-PopupWindow-的坑/">
+     data-url="http://renkangke.github.io/2017/02/21/时间与效率/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -413,8 +486,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/05/06/记一个ViewPager-with-Fragments-inside-PopupWindow-的坑/"
-           data-title="记一个ViewPager-with-Fragments-inside-PopupWindow-的坑" data-url="http://renkangke.github.io/2015/05/06/记一个ViewPager-with-Fragments-inside-PopupWindow-的坑/">
+      <div class="ds-thread" data-thread-key="2017/02/21/时间与效率/"
+           data-title="时间与效率" data-url="http://renkangke.github.io/2017/02/21/时间与效率/">
       </div>
     
   </div>
@@ -572,7 +645,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、关于时间的残酷事实"><span class="nav-number">1.</span> <span class="nav-text">一、关于时间的残酷事实</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、关于效率的提升技巧"><span class="nav-number">2.</span> <span class="nav-text">二、关于效率的提升技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-增大总功的时间"><span class="nav-number">2.1.</span> <span class="nav-text">1. 增大总功的时间</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-多线程处理，同时做多件事。"><span class="nav-number">2.1.1.</span> <span class="nav-text">a. 多线程处理，同时做多件事。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-强身健体。"><span class="nav-number">2.1.2.</span> <span class="nav-text">b. 强身健体。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-减少做有用功所花费的时间"><span class="nav-number">2.2.</span> <span class="nav-text">2. 减少做有用功所花费的时间</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-尽量做正确的事"><span class="nav-number">2.2.1.</span> <span class="nav-text">1. 尽量做正确的事</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-尽快地完成生活中的琐事"><span class="nav-number">2.2.2.</span> <span class="nav-text">2. 尽快地完成生活中的琐事</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-尽快地完成工作上的事"><span class="nav-number">2.2.3.</span> <span class="nav-text">3. 尽快地完成工作上的事</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-提高学习，思考、记忆的效率"><span class="nav-number">2.2.4.</span> <span class="nav-text">4. 提高学习，思考、记忆的效率</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>

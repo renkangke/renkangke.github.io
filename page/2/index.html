@@ -268,6 +268,114 @@
             
               
                 
+                <a class="post-title-link" href="/2015/07/21/Android中webview与javascript交互方法/" itemprop="url">
+                  Android中webview与javascript交互方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-07-21T22:42:46+08:00" content="Jul 21 2015">
+              Jul 21 2015
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/07/21/Android中webview与javascript交互方法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/21/Android中webview与javascript交互方法/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>本文主要是记录了Android中webview与javascript交互方法以及注意事项。</p>
+<h2 id="JS调用Android中的方法"><a href="#JS调用Android中的方法" class="headerlink" title="JS调用Android中的方法"></a>JS调用Android中的方法</h2><ul>
+<li>首页要在Webview中注入Android中的java对象</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mWebView.addJavascriptInterface(new JavaObject(), &quot;YouAliasName&quot;;</div></pre></td></tr></table></figure>
+<p>例如： JavaObject()中有这样一个方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@JavascriptInterface</div><div class="line">   public void toast(String toast) &#123;</div><div class="line">       ToastUtils.show(mContext, uiToast.getMessage());</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/07/21/Android中webview与javascript交互方法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/07/14/Android-Studio-Gradle编译时『No-resource-found-that-matches-the-given-name』解决方法（windows系统）/" itemprop="url">
                   Android Studio Gradle编译时『No resource found that matches the given name』解决方法（windows系统的坑）
                 </a>
@@ -797,116 +905,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/01/关于Android多进程导致Application多次初始化的问题/" itemprop="url">
-                  小议Android多进程以致Application多次初始化
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-01T23:56:21+08:00" content="Jul 1 2015">
-              Jul 1 2015
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/07/01/关于Android多进程导致Application多次初始化的问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/01/关于Android多进程导致Application多次初始化的问题/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>最近遇到一个bug，当应用加了多进程后，比如总共进程数为N，会出现在<code>startService（）</code>时<code>onStartCommand()</code>方法会被重复调用<code>（N-1）</code>次的奇怪现象。</p>
-<hr>
-<h2 id="祸起"><a href="#祸起" class="headerlink" title="祸起"></a>祸起</h2><blockquote>
-<p>最近遇到两个模块互不相干却受到影响的奇怪问题，一个push模块和一个DaemonProcess模块在一起后，会出现如下现像的问题</p>
-<hr>
-<p>当DaemonProcess为应用加了多进程后，比如总共进程数为N，会出现push模块在<code>startService（）</code>时<code>onStartCommand()</code>方法会被重复调用<code>（N-1）</code>次的奇怪现象。</p>
-<hr>
-</blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/07/01/关于Android多进程导致Application多次初始化的问题/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -952,7 +950,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -962,7 +960,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1073,7 +1071,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

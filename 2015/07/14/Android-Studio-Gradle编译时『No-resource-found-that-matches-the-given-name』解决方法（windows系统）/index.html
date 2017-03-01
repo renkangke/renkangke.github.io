@@ -354,7 +354,7 @@ mac上两个都能正常编译，windows上其中一个编译通不过">
 </ol>
 <a id="more"></a>
 <p>主要Error如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">No resource found that matches the given name (at drawable with value @drawable/xxxxxxxxxxxxxxxxxxxxxxxx)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">No resource found that matches the given name (at drawable with value @drawable/xxxxxxxxxxxxxxxxxxxxxxxx)</div></pre></td></tr></table></figure>
 <p>我们做了各种排除，最后发现问题的特点：<br>两个项目，一个可编译，一个编译失败，区别在于，文件路径不一样长，文件名不一样长，最后由这个想到了是不是这个原因了，mac没有类似限制……<br>不查不知道啊，一查吓一跳：</p>
 <h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><blockquote>
 <p><code>windows限制路径字符长度最大值：  260……</code><a href="http://stackoverflow.com/questions/1880321/why-does-the-260-character-path-length-limit-exist-in-windows" target="_blank" rel="external">查看这是为何</a><br>因为gradle编译时引用 build目录下拉取的aar路径层次太深，超过260，编译时不通过,这就是为什么很同用windows的同学，会在配置完全OK的情况下编译失败.</p>
@@ -502,7 +502,7 @@ mac上两个都能正常编译，windows上其中一个编译通不过">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -512,7 +512,7 @@ mac上两个都能正常编译，windows上其中一个编译通不过">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -634,7 +634,7 @@ mac上两个都能正常编译，windows上其中一个编译通不过">
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -338,11 +338,11 @@
 <li>不需要错误检查，更加可读和安全</li>
 </ol>
 <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p><code>泛型类</code>（generic class）：具有<strong>一个或多个类型变量</strong>的类</p>
-<h2 id="重要的通配符类型"><a href="#重要的通配符类型" class="headerlink" title="重要的通配符类型"></a>重要的通配符类型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;T&gt;  // 里面可以是任意大写字符 这个就表示任意类型、简单明了吧</span><br></pre></td></tr></table></figure>
+<h2 id="重要的通配符类型"><a href="#重要的通配符类型" class="headerlink" title="重要的通配符类型"></a>重要的通配符类型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;T&gt;  // 里面可以是任意大写字符 这个就表示任意类型、简单明了吧</div></pre></td></tr></table></figure>
 <h2 id="如何使用它？"><a href="#如何使用它？" class="headerlink" title="如何使用它？"></a>如何使用它？</h2><ul>
 <li><h4 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h4></li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 可以任意个类型</span><br><span class="line">public TestClass&lt;T&gt;&#123;&#125;</span><br><span class="line"></span><br><span class="line">public TestClass&lt;T, U&gt;&#123;&#125;</span><br><span class="line"></span><br><span class="line">public TestClass&lt;T, U, W&gt;&#123;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// 可以任意个类型</div><div class="line">public TestClass&lt;T&gt;&#123;&#125;</div><div class="line"></div><div class="line">public TestClass&lt;T, U&gt;&#123;&#125;</div><div class="line"></div><div class="line">public TestClass&lt;T, U, W&gt;&#123;&#125;</div></pre></td></tr></table></figure>
 <h5 id="使用规则"><a href="#使用规则" class="headerlink" title="使用规则"></a>使用规则</h5><ol>
 <li>尖括号括起来 </li>
 <li>放在类名的后面</li>
@@ -351,14 +351,14 @@
 <ul>
 <li><h4 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h4></li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public static &lt;T&gt; T getValue(T[] keys)&#123;</span><br><span class="line">	// 这是一个返回类型为T</span><br><span class="line">	// 参数是T的数组</span><br><span class="line">	// 的泛型方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public static &lt;T&gt; T getValue(T[] keys)&#123;</div><div class="line">	// 这是一个返回类型为T</div><div class="line">	// 参数是T的数组</div><div class="line">	// 的泛型方法</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h5 id="使用规则-1"><a href="#使用规则-1" class="headerlink" title="使用规则"></a>使用规则</h5><ol>
 <li><t>放在方法修饰符（public static）后面 </t></li>
 <li><t>放在方法返回值前面</t></li>
 <li><t>也叫类型变量 </t></li>
 </ol>
 <h2 id="类型变量的限定"><a href="#类型变量的限定" class="headerlink" title="类型变量的限定"></a>类型变量的限定</h2><p>说直白点就是，类型变量也是可以有条件的，就好比你去买书，历史类的书，这个就是条件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 一个时</span><br><span class="line"> public static &lt;T extends Comparable&gt; T min(T[] a）...</span><br><span class="line">// 多个时</span><br><span class="line"> public static &lt;T extends Comparable &amp; Serializable&gt; T min(T[] a）...</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 一个时</div><div class="line"> public static &lt;T extends Comparable&gt; T min(T[] a）...</div><div class="line">// 多个时</div><div class="line"> public static &lt;T extends Comparable &amp; Serializable&gt; T min(T[] a）...</div></pre></td></tr></table></figure>
 <h2 id="泛型代码编译时是怎样运行的"><a href="#泛型代码编译时是怎样运行的" class="headerlink" title="泛型代码编译时是怎样运行的"></a>泛型代码编译时是怎样运行的</h2><ol>
 <li>泛型代码最终还是编译时还是运行在<code>虚拟机</code>上的</li>
 <li>虚拟机上没有泛型类型对象、只有普通的类和方法</li>
@@ -377,7 +377,7 @@
 <li>比如： 没有ArrayList<double> 只有ArrayList<double> 原因：类型擦除时带来的 Object不能存储double</double></double></li>
 <li>可以使用8种基本类型以及自定义的类</li>
 </ol>
-<h4 id="运行时类型查询-只适用于原始类型"><a href="#运行时类型查询-只适用于原始类型" class="headerlink" title="运行时类型查询 只适用于原始类型"></a>运行时类型查询 只适用于原始类型</h4><h2 id="通配符类型"><a href="#通配符类型" class="headerlink" title="通配符类型"></a>通配符类型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 通配符类型</span><br><span class="line">TestClass&lt;? extends Thread&gt;</span><br><span class="line">// 通配符的超类型限定</span><br><span class="line">TestClass&lt;? super Thread&gt;</span><br><span class="line">// 无限定通配符 但不能在代码中使用？作为一种类型</span><br><span class="line">TestClass&lt;?&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="运行时类型查询-只适用于原始类型"><a href="#运行时类型查询-只适用于原始类型" class="headerlink" title="运行时类型查询 只适用于原始类型"></a>运行时类型查询 只适用于原始类型</h4><h2 id="通配符类型"><a href="#通配符类型" class="headerlink" title="通配符类型"></a>通配符类型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// 通配符类型</div><div class="line">TestClass&lt;? extends Thread&gt;</div><div class="line">// 通配符的超类型限定</div><div class="line">TestClass&lt;? super Thread&gt;</div><div class="line">// 无限定通配符 但不能在代码中使用？作为一种类型</div><div class="line">TestClass&lt;?&gt;</div></pre></td></tr></table></figure>
 <p>通配符类型不是一种类型变量</p>
 
       
@@ -515,7 +515,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -525,7 +525,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -647,7 +647,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

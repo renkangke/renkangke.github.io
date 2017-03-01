@@ -345,10 +345,10 @@
 <h2 id="举证"><a href="#举证" class="headerlink" title="举证"></a>举证</h2><blockquote>
 <p>Demo测试：<br>首先在Application中申明四个service，其中<code>ServiceA</code>和<code>ServiceC</code>都各自另开一个进程，<code>ServiceB</code>和<code>ServiceD</code>都在主进程中，AndroidManifest.xml如下：</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;service android:name=&quot;.ServiceA&quot;</span><br><span class="line">            android:process=&quot;com.hujiang.test.servicea&quot;</span><br><span class="line">         android:exported=&quot;true&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;service android:name=&quot;.ServiceB&quot;</span><br><span class="line">         android:exported=&quot;false&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;service android:name=&quot;.ServiceC&quot;</span><br><span class="line">         android:process=&quot;com.hujiang.test.servicec&quot;</span><br><span class="line">    android:exported=&quot;true&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;service android:name=&quot;.ServiceD&quot;</span><br><span class="line">         android:exported=&quot;false&quot;/&gt;</span><br></pre></td></tr></table></figure>
-<p>此时在Application中启动四个Service<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">startService(new Intent(this, ServiceA.class));</span><br><span class="line">      startService(new Intent(this, ServiceB.class));</span><br><span class="line">      startService(new Intent(this, ServiceC.class));</span><br><span class="line">      startService(new Intent(this, ServiceD.class));</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;service android:name=&quot;.ServiceA&quot;</div><div class="line">            android:process=&quot;com.hujiang.test.servicea&quot;</div><div class="line">         android:exported=&quot;true&quot;/&gt;</div><div class="line"></div><div class="line">&lt;service android:name=&quot;.ServiceB&quot;</div><div class="line">         android:exported=&quot;false&quot;/&gt;</div><div class="line"></div><div class="line">&lt;service android:name=&quot;.ServiceC&quot;</div><div class="line">         android:process=&quot;com.hujiang.test.servicec&quot;</div><div class="line">    android:exported=&quot;true&quot;/&gt;</div><div class="line"></div><div class="line">&lt;service android:name=&quot;.ServiceD&quot;</div><div class="line">         android:exported=&quot;false&quot;/&gt;</div></pre></td></tr></table></figure>
+<p>此时在Application中启动四个Service<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">startService(new Intent(this, ServiceA.class));</div><div class="line">      startService(new Intent(this, ServiceB.class));</div><div class="line">      startService(new Intent(this, ServiceC.class));</div><div class="line">      startService(new Intent(this, ServiceD.class));</div></pre></td></tr></table></figure></p>
 <p>同时各Service打下如下log:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public static final String TAG = ServiceB.class.getSimpleName();</span><br><span class="line">   @Override</span><br><span class="line">   public void onCreate() &#123;</span><br><span class="line">       super.onCreate();</span><br><span class="line">       Log.i(TAG,&quot;onCreate&quot; + &quot;pid：&quot; + android.os.Process.myPid());</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   @Override</span><br><span class="line">   public int onStartCommand(Intent intent, int flags, int startId) &#123;</span><br><span class="line">       Log.i(TAG,&quot;onStartCommand&quot; + &quot;pid：&quot; + android.os.Process.myPid());</span><br><span class="line">       return super.onStartCommand(intent, flags, startId);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public static final String TAG = ServiceB.class.getSimpleName();</div><div class="line">   @Override</div><div class="line">   public void onCreate() &#123;</div><div class="line">       super.onCreate();</div><div class="line">       Log.i(TAG,&quot;onCreate&quot; + &quot;pid：&quot; + android.os.Process.myPid());</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   @Override</div><div class="line">   public int onStartCommand(Intent intent, int flags, int startId) &#123;</div><div class="line">       Log.i(TAG,&quot;onStartCommand&quot; + &quot;pid：&quot; + android.os.Process.myPid());</div><div class="line">       return super.onStartCommand(intent, flags, startId);</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
 <p>在log中会发现<br><code>onCreate()</code>方法各执行一遍，这个是正常的，但<code>onStartCommand()</code>方法目前执行了三遍，因为共3个进程。</p>
 <h2 id="真相"><a href="#真相" class="headerlink" title="真相"></a>真相</h2><ol>
 <li>N个进程，N个独立的虚拟机,Application被N次初使化</li>
@@ -514,7 +514,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -524,7 +524,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -646,7 +646,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

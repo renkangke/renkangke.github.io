@@ -360,7 +360,7 @@
 <ol>
 <li>project中的settings.gradle中添加如下类型,对应为当前目录路径，其中用<code>:</code>分隔。下面代码中module0表示当前根目录中有一个module0,module1表示在根目录下aaa文件夹下bbb文件夹下的module1,根目录下ddd文件夹下的module2。</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">include &apos;module0&apos;</span><br><span class="line">include &apos;aaa:bbb:module1&apos;</span><br><span class="line">include &apos;ddd:module2&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">include &apos;module0&apos;</div><div class="line">include &apos;aaa:bbb:module1&apos;</div><div class="line">include &apos;ddd:module2&apos;</div></pre></td></tr></table></figure>
 </li>
 </ol>
 </li>
@@ -368,11 +368,11 @@
 <pre><code>    2. build.gradle中填入如下
 
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">	</span><br><span class="line">	buildscript &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        mavenLocal()</span><br><span class="line"></span><br><span class="line">        maven &#123;</span><br><span class="line">            url &quot;http://your own maven url&quot;</span><br><span class="line">        &#125;</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line">    dependencies &#123;</span><br><span class="line">        classpath &apos;com.android.tools.build:gradle:1.2.3&apos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">allprojects &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        mavenLocal()</span><br><span class="line"></span><br><span class="line">        maven &#123;</span><br><span class="line">            url &quot;http://your own maven url&quot;</span><br><span class="line">        &#125;</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">	</div><div class="line">	buildscript &#123;</div><div class="line">    repositories &#123;</div><div class="line">        mavenLocal()</div><div class="line"></div><div class="line">        maven &#123;</div><div class="line">            url &quot;http://your own maven url&quot;</div><div class="line">        &#125;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">    dependencies &#123;</div><div class="line">        classpath &apos;com.android.tools.build:gradle:1.2.3&apos;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">allprojects &#123;</div><div class="line">    repositories &#123;</div><div class="line">        mavenLocal()</div><div class="line"></div><div class="line">        maven &#123;</div><div class="line">            url &quot;http://your own maven url&quot;</div><div class="line">        &#125;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
 2. 在module中添加build.gradle文件，这里可以配置以下内容设置文件夹：
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sourceSets &#123;</span><br><span class="line">       main &#123;</span><br><span class="line">           java.srcDirs = [&apos;src&apos;]</span><br><span class="line">           res.srcDirs = [&apos;res&apos;]</span><br><span class="line">           assets.srcDirs = [&apos;assets&apos;]</span><br><span class="line">           jni.srcDirs = [&apos;jni&apos;]</span><br><span class="line">           jniLibs.srcDirs = [&apos;libs&apos;]</span><br><span class="line">           manifest.srcFile &apos;AndroidManifest.xml&apos;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">sourceSets &#123;</div><div class="line">       main &#123;</div><div class="line">           java.srcDirs = [&apos;src&apos;]</div><div class="line">           res.srcDirs = [&apos;res&apos;]</div><div class="line">           assets.srcDirs = [&apos;assets&apos;]</div><div class="line">           jni.srcDirs = [&apos;jni&apos;]</div><div class="line">           jniLibs.srcDirs = [&apos;libs&apos;]</div><div class="line">           manifest.srcFile &apos;AndroidManifest.xml&apos;</div><div class="line">       &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
 </code></pre><ol>
 <li>其它<ol>
 <li>AndroidManifest.xml的合并</li>
@@ -385,8 +385,8 @@
 </li>
 <li>未完待续</li>
 </ol>
-<h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">finished with non-zero exit value 3</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">compile fileTree(dir: &apos;libs&apos;, include: [&apos;*.jar&apos;])换成provided fileTree(dir: &apos;libs&apos;, include: [&apos;*.jar&apos;])</span><br></pre></td></tr></table></figure>
+<h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">finished with non-zero exit value 3</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"> </div><div class="line">compile fileTree(dir: &apos;libs&apos;, include: [&apos;*.jar&apos;])换成provided fileTree(dir: &apos;libs&apos;, include: [&apos;*.jar&apos;])</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -521,7 +521,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -531,7 +531,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -653,7 +653,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
