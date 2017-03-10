@@ -1,0 +1,900 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Git," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="这是我最近给公司同事分享的PPT，特记录于此。其实PPT总体还是过于简洁，Git知识点繁多，但只要理解了思想，多实践是会发现其中的精彩的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git Magic">
+<meta property="og:url" content="http://renkangke.github.io/2015/09/13/Git-Magic/index.html">
+<meta property="og:site_name" content="Ren Kangke's Blog">
+<meta property="og:description" content="这是我最近给公司同事分享的PPT，特记录于此。其实PPT总体还是过于简洁，Git知识点繁多，但只要理解了思想，多实践是会发现其中的精彩的。">
+<meta property="og:updated_time" content="2016-06-08T08:58:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git Magic">
+<meta name="twitter:description" content="这是我最近给公司同事分享的PPT，特记录于此。其实PPT总体还是过于简洁，Git知识点繁多，但只要理解了思想，多实践是会发现其中的精彩的。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://renkangke.github.io/2015/09/13/Git-Magic/"/>
+
+  <title> Git Magic | Ren Kangke's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Ren Kangke's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Focus on Android, Java, Performance Optimization, Open Source/Thought change lives</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/tags/技术" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-mobile-phone"></i> <br />
+            
+            技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-essay">
+          <a href="/tags/随笔" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-coffee"></i> <br />
+            
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/2014/09/10/关于我/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Git Magic
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-09-13T22:51:55+08:00" content="Sep 13 2015">
+              Sep 13 2015
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/13/Git-Magic/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/13/Git-Magic/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这是我最近给公司同事分享的PPT，特记录于此。<br>其实PPT总体还是过于简洁，Git知识点繁多，但只要理解了思想，多实践是会发现其中的精彩的。</p>
+<a id="more"></a>
+<h1 id="Git-Magic-PPT"><a href="#Git-Magic-PPT" class="headerlink" title="Git Magic PPT"></a>Git Magic PPT</h1><blockquote>
+<p>“The stupid content tracker.”<br> –Linus Torvalds</p>
+</blockquote>
+<h3 id="来自各方的赞美"><a href="#来自各方的赞美" class="headerlink" title="来自各方的赞美"></a>来自各方的赞美</h3><ul>
+<li>版本控制瑞士军刀。 </li>
+<li>足够先进的技术与魔法无二 </li>
+<li>可靠、多才多艺、用途多样、异常灵活、 </li>
+<li>不易掌握、难以精通  </li>
+</ul>
+<h2 id="Why-git-is-magic"><a href="#Why-git-is-magic" class="headerlink" title="Why git is magic?"></a>Why git is magic?</h2><h3 id="身世显赫"><a href="#身世显赫" class="headerlink" title="身世显赫"></a>身世显赫</h3><ul>
+<li>出自linux之父Linus伟大作品</li>
+<li>Linux 内核代码管理工具:BitKeeper</li>
+<li>2005年：开始自己开发Git</li>
+</ul>
+<h3 id="Git-诞生大事记"><a href="#Git-诞生大事记" class="headerlink" title="Git 诞生大事记"></a>Git 诞生大事记</h3><ul>
+<li>2005年4月3号 —&gt; 开始开发</li>
+<li>2005年4月6日 —&gt; 项目发布</li>
+<li>2005年4月7日 —&gt; Git作为自身的版本控制工具</li>
+<li>2005年4月18日—&gt; 多分支合并</li>
+<li>2005年4月29日—&gt; Git 的性能达到了 Linus 的预期</li>
+<li>2005年6月16日—&gt; 开始用于维护Linux 源代码</li>
+</ul>
+<h3 id="开发目标"><a href="#开发目标" class="headerlink" title="开发目标"></a>开发目标</h3><ul>
+<li>速度 </li>
+<li>简单的设计</li>
+<li>对分支强力支持</li>
+<li>完全分布式</li>
+<li>有能力高效管理类似 Linux 内核一样的超大规模项目（速度和数据量）</li>
+</ul>
+<h2 id="Git思想"><a href="#Git思想" class="headerlink" title="Git思想"></a>Git思想</h2><h3 id="1、直接记录快照"><a href="#1、直接记录快照" class="headerlink" title="1、直接记录快照"></a>1、直接记录快照</h3><ul>
+<li>每个Commit是一个快照，而非差异比较</li>
+<li>变更文件直接copy， 未变更文件指向上一个版本</li>
+<li>需切换到某个commit时，直接load</li>
+<li>空间换时间（而非保存差异，做merge）</li>
+</ul>
+<h3 id="2、几乎所有操作本地执行"><a href="#2、几乎所有操作本地执行" class="headerlink" title="2、几乎所有操作本地执行"></a>2、几乎所有操作本地执行</h3><p>分布式<br>速度之神赐给了 Git 超凡的能量</p>
+<h3 id="3、保证数据完整性"><a href="#3、保证数据完整性" class="headerlink" title="3、保证数据完整性"></a>3、保证数据完整性</h3><ul>
+<li>所有数据在存储前都用 SHA-1 散列计算校验和</li>
+<li>40 个十六进制字符（0-9 和 a-f）组成字符串</li>
+<li>基于 Git 中文件的内容或目录结构计算出来</li>
+<li>通常 8 到 10 个字符已经足够避免 SHA-1 的歧义</li>
+<li>Linux 目前有超过 45 万个提交，包含 360 万个对象，也只需要前 11 个字符就能保证唯一性。</li>
+</ul>
+<h3 id="4、一般直添加数据"><a href="#4、一般直添加数据" class="headerlink" title="4、一般直添加数据"></a>4、一般直添加数据</h3><ul>
+<li>仓库内容几乎只增加不减少</li>
+<li>难以丢失数据，大部分操作是可逆的</li>
+</ul>
+<h3 id="5、三种状态"><a href="#5、三种状态" class="headerlink" title="5、三种状态"></a>5、三种状态</h3><ul>
+<li>Working Directory：工作目录—&gt;已修改（modified）</li>
+<li>Stage（Index）：暂存“目录”，用git add命令添加的文件就到了这里，即将被commit的文件—&gt;已暂存（staged）</li>
+<li>Repository：项目“目录”，用git commit提交的文件就到了这里—&gt;已提交（committed）</li>
+</ul>
+<h3 id="6、给力的分支"><a href="#6、给力的分支" class="headerlink" title="6、给力的分支"></a>6、给力的分支</h3><ul>
+<li>大多数版本控制系统创建分支时，将所有的项目文件都复制一遍</li>
+<li>而Git是如何创建分支的呢？为什么会这么快</li>
+<li>Git 的分支实质上仅是包含所指对象校验和（长度为 40 的 SHA-1 值字符串）的文件，所以它的创建和销毁都异常高效。</li>
+<li>创建一个新分支就像是往一个文件中写入 41 个字节（40 个字符和 1 个换行符），如此的简单能不快吗？</li>
+</ul>
+<h2 id="Git-Magic-Usage"><a href="#Git-Magic-Usage" class="headerlink" title="Git Magic Usage"></a>Git Magic Usage</h2><h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><ul>
+<li>git init、git clone、git status、git add、git commit、</li>
+<li>git push、git pull、git diff、git log、git checkout、</li>
+<li>git reset、git fetch、git rebase、git revert、</li>
+<li>git cherry-pick、git rm、git rerere、git mv、</li>
+<li>git config、git remote、git tag、git show、git grep……</li>
+</ul>
+<h2 id="从小例子开始简单讲起"><a href="#从小例子开始简单讲起" class="headerlink" title="从小例子开始简单讲起"></a>从小例子开始简单讲起</h2><h3 id="本地项目初始化"><a href="#本地项目初始化" class="headerlink" title="本地项目初始化"></a>本地项目初始化</h3><ul>
+<li>git init  : 创建一个名为 .git 的文件夹</li>
+<li>git remote add origin xxxxx.git</li>
+<li>vi .gitignore</li>
+<li>git add ./xxxx</li>
+<li>git commit -m “first commit”</li>
+<li>此时默认仓库名为origin ，默认分支为master</li>
+<li>origin 和master  这两个只是默认的名称，没有什么特殊，可以修改为任意名字</li>
+</ul>
+<h3 id="从网络上clone项目"><a href="#从网络上clone项目" class="headerlink" title="从网络上clone项目"></a>从网络上clone项目</h3><ul>
+<li>git clone xxx.git TestProject</li>
+<li>git clone -b develop  xxx.git</li>
+<li>git add fileName</li>
+<li>git commit -m “first commit”</li>
+<li>此时默认仓库名为origin ，默认分支为master</li>
+</ul>
+<h3 id="git-clone-remote"><a href="#git-clone-remote" class="headerlink" title="git clone/remote"></a>git clone/remote</h3><ul>
+<li>git clone xxx.git TestProject// 自定义文件夹名称</li>
+<li>git clone -b develop  xxx.git // 指定拉取分支</li>
+<li>git remote add <shortname> <url> // 链接仓库</url></shortname></li>
+</ul>
+<h3 id="gitignore"><a href="#gitignore" class="headerlink" title=".gitignore"></a>.gitignore</h3><ul>
+<li>每个项目开始先配置好</li>
+<li>支持标准的 glob 模式匹配</li>
+<li>以#开头和空行默认不生效</li>
+<li>！（不过滤，必须上传）</li>
+<li><a href="https://github.com/github/gitignore" target="_blank" rel="external">https://github.com/github/gitignore</a> </li>
+</ul>
+<h3 id="git-add-commit"><a href="#git-add-commit" class="headerlink" title="git add/commit"></a>git add/commit</h3><ul>
+<li>git add  text.txt   反操作：git reset HEAD test.txt</li>
+<li>git add .</li>
+<li>git add –all</li>
+<li>git commit -a -m</li>
+<li>git commit  –amend    // 修改上次提交</li>
+</ul>
+<h3 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch"></a>git branch</h3><ul>
+<li>Head是一个指针，指向当前所在的本地分支</li>
+<li>它总是指向该分支上的最后一次提交</li>
+</ul>
+<h3 id="git-fetch-pull"><a href="#git-fetch-pull" class="headerlink" title="git fetch/pull"></a>git fetch/pull</h3><ul>
+<li>pull = fetch + merge</li>
+<li>官方建议fetch+merge</li>
+<li>git pull  - - rebase   =  git fetch + git rebase</li>
+</ul>
+<h3 id="merge-rebase"><a href="#merge-rebase" class="headerlink" title="merge/rebase"></a>merge/rebase</h3><ul>
+<li>作用都是：整合来自不同分支的修改</li>
+</ul>
+<h3 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h3><ul>
+<li>git merge master</li>
+<li>merge=(C3 &amp; C4) &amp; C2进行三方合并，合并的结果是生成一个新的快照（并提交）</li>
+<li>Fast-forward合并，其实可以理解为HEAD指针指向的快速移动。</li>
+</ul>
+<h3 id="rebase"><a href="#rebase" class="headerlink" title="rebase"></a>rebase</h3><ul>
+<li>git rebase master</li>
+<li>取出master上c2后面的历次commit(提交)</li>
+<li>将上述提交按照时间对C4（experiment分支）应用</li>
+</ul>
+<h3 id="merge和rebase的两种观点"><a href="#merge和rebase的两种观点" class="headerlink" title="merge和rebase的两种观点"></a>merge和rebase的两种观点</h3><ul>
+<li>记录实际发生过什么：它是针对历史的文档，本身就有价值，不能乱改。（像历史本身）</li>
+<li>项目过程中发生的故事：持这一观点的人会使用 rebase 及 filter-branch 等工具来编写故事，怎么方便后来的读者就怎么写。（像正史本身）</li>
+<li>总的原则：只对尚未推送或分享给别人的本地修改执行rebase操作清理历史，从不对已推送至别处的提交执行rebase操作</li>
+</ul>
+<h3 id="checkout"><a href="#checkout" class="headerlink" title="checkout"></a>checkout</h3><ul>
+<li>分支相关操作：git checkout 分支名/commit hash切换到相应的分支或commit，加上-b参数则会创建分支并切换过去</li>
+<li>恢复文件相关操作：git checkout file</li>
+</ul>
+<h3 id="git-reset"><a href="#git-reset" class="headerlink" title="git reset"></a>git reset</h3><ul>
+<li>git reset –soft HEAD~2</li>
+<li>–soft     移动 HEAD</li>
+<li>–mixed  移动 HEAD 、更新索引  (默认)</li>
+<li>–hard    移动 HEAD 、更新索引、更改目录</li>
+<li>git reset file.txt  —&gt;移动HEAD、更新索引</li>
+<li>缺点是它会重写历史</li>
+</ul>
+<h3 id="revert"><a href="#revert" class="headerlink" title="revert"></a>revert</h3><ul>
+<li>git revert HEAD</li>
+<li>HEAD继续前进</li>
+<li>逆向的commit“中和”之前的commit</li>
+</ul>
+<h3 id="checkout-vs-reset"><a href="#checkout-vs-reset" class="headerlink" title="checkout vs reset"></a>checkout vs reset</h3><ul>
+<li>git checkout [branch] 与git reset –hard [branch]非常相似</li>
+<li>checkout 对工作目录是安全的、reset 会移动 HEAD 分支的指向</li>
+<li>checkout 只会移动 HEAD 自身来指向另一个分支。</li>
+</ul>
+<h3 id="比较有用的一些命令"><a href="#比较有用的一些命令" class="headerlink" title="比较有用的一些命令"></a>比较有用的一些命令</h3><ul>
+<li>git rm —cached //移除remote 仓库不需要的文件</li>
+<li>git mv</li>
+<li>git shortlog –since=18.hours –no-merges &gt; pbcopy // 打印简短的log</li>
+<li>android studio local history</li>
+<li>git stash // 暂时缓存当前的修改</li>
+<li>git stash list</li>
+<li>git stash apply id</li>
+<li>git stash pop</li>
+<li>git stash drop  id</li>
+<li>git cherry-pick <commit id=""></commit></li>
+<li>核武器级选项：filter-branch // 更改所有历史</li>
+<li>git filter-branch –tree-filter ‘rm -f passwords.txt’ HEAD </li>
+</ul>
+<h3 id="推荐资源"><a href="#推荐资源" class="headerlink" title="推荐资源"></a>推荐资源</h3><ul>
+<li>Pro Git book : <a href="http://git-scm.com/book/zh/v2" target="_blank" rel="external">http://git-scm.com/book/zh/v2</a></li>
+<li>Learn Git : <a href="http://pcottle.github.io/learnGitBranching/" target="_blank" rel="external">http://pcottle.github.io/learnGitBranching/</a></li>
+<li>图解Git : <a href="http://my.oschina.net/xdev/blog/114383" target="_blank" rel="external">http://my.oschina.net/xdev/blog/114383</a></li>
+<li>Git Magic `:<a href="http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/zh_cn/book.html" target="_blank" rel="external">http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/zh_cn/book.html</a></li>
+</ul>
+<h3 id="形象记忆"><a href="#形象记忆" class="headerlink" title="形象记忆"></a>形象记忆</h3><ul>
+<li>cherry-pick - 妈妈，我也要</li>
+<li>merge - 求合体</li>
+<li>rebase - 我是直男，不喜欢弯的</li>
+<li>commit - 我会好几种姿势呢</li>
+<li>checkout - 上得了厅堂，下得了厨房</li>
+<li>diff - 来，叔叔给你检查身体</li>
+<li>reset - 有了我你随便咋折腾都行</li>
+<li>rebase -变基</li>
+</ul>
+<h3 id="Thanks"><a href="#Thanks" class="headerlink" title="Thanks"></a>Thanks</h3>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Git/" rel="tag">#Git</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/08/27/Android-JS-Debug技巧/" rel="next" title="Android JS Debug技巧">
+                <i class="fa fa-chevron-left"></i> Android JS Debug技巧
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/09/20/Gradle语法总结一/" rel="prev" title="Gradle语法总结一">
+                Gradle语法总结一 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/09/13/Git-Magic/"
+     data-title="Git Magic"
+     data-content=""
+     data-url="http://renkangke.github.io/2015/09/13/Git-Magic/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/09/13/Git-Magic/"
+           data-title="Git Magic" data-url="http://renkangke.github.io/2015/09/13/Git-Magic/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ww1.sinaimg.cn/large/65c8b1c5jw1ew2brnos75j20cs0csdgr.jpg"
+               alt="任康可" />
+          <p class="site-author-name" itemprop="name">任康可</p>
+          <p class="site-description motion-element" itemprop="description">Android\iOS\Open Source</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/renkangke" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/conquermin" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="/atom.xml" target="_blank" title="rss">
+                  
+                    <i class="fa fa-fw fa-rss"></i>
+                  
+                  rss
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/+renkangker/posts" target="_blank" title="google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                  google
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/ConquerRen" target="_blank" title="twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/renkangke" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.douban.com/people/renkangke/" target="_blank" title="douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:renkangke@gmail.com" target="_blank" title="mail">
+                  
+                    <i class="fa fa-fw fa-mail-reply"></i>
+                  
+                  mail
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-Magic-PPT"><span class="nav-number">1.</span> <span class="nav-text">Git Magic PPT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#来自各方的赞美"><span class="nav-number">1.0.1.</span> <span class="nav-text">来自各方的赞美</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-git-is-magic"><span class="nav-number">1.1.</span> <span class="nav-text">Why git is magic?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#身世显赫"><span class="nav-number">1.1.1.</span> <span class="nav-text">身世显赫</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-诞生大事记"><span class="nav-number">1.1.2.</span> <span class="nav-text">Git 诞生大事记</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发目标"><span class="nav-number">1.1.3.</span> <span class="nav-text">开发目标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git思想"><span class="nav-number">1.2.</span> <span class="nav-text">Git思想</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、直接记录快照"><span class="nav-number">1.2.1.</span> <span class="nav-text">1、直接记录快照</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、几乎所有操作本地执行"><span class="nav-number">1.2.2.</span> <span class="nav-text">2、几乎所有操作本地执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、保证数据完整性"><span class="nav-number">1.2.3.</span> <span class="nav-text">3、保证数据完整性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、一般直添加数据"><span class="nav-number">1.2.4.</span> <span class="nav-text">4、一般直添加数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、三种状态"><span class="nav-number">1.2.5.</span> <span class="nav-text">5、三种状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、给力的分支"><span class="nav-number">1.2.6.</span> <span class="nav-text">6、给力的分支</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-Magic-Usage"><span class="nav-number">1.3.</span> <span class="nav-text">Git Magic Usage</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用命令"><span class="nav-number">1.3.1.</span> <span class="nav-text">常用命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从小例子开始简单讲起"><span class="nav-number">1.4.</span> <span class="nav-text">从小例子开始简单讲起</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#本地项目初始化"><span class="nav-number">1.4.1.</span> <span class="nav-text">本地项目初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从网络上clone项目"><span class="nav-number">1.4.2.</span> <span class="nav-text">从网络上clone项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-clone-remote"><span class="nav-number">1.4.3.</span> <span class="nav-text">git clone/remote</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gitignore"><span class="nav-number">1.4.4.</span> <span class="nav-text">.gitignore</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-add-commit"><span class="nav-number">1.4.5.</span> <span class="nav-text">git add/commit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-branch"><span class="nav-number">1.4.6.</span> <span class="nav-text">git branch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-fetch-pull"><span class="nav-number">1.4.7.</span> <span class="nav-text">git fetch/pull</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#merge-rebase"><span class="nav-number">1.4.8.</span> <span class="nav-text">merge/rebase</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#merge"><span class="nav-number">1.4.9.</span> <span class="nav-text">merge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rebase"><span class="nav-number">1.4.10.</span> <span class="nav-text">rebase</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#merge和rebase的两种观点"><span class="nav-number">1.4.11.</span> <span class="nav-text">merge和rebase的两种观点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#checkout"><span class="nav-number">1.4.12.</span> <span class="nav-text">checkout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-reset"><span class="nav-number">1.4.13.</span> <span class="nav-text">git reset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#revert"><span class="nav-number">1.4.14.</span> <span class="nav-text">revert</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#checkout-vs-reset"><span class="nav-number">1.4.15.</span> <span class="nav-text">checkout vs reset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比较有用的一些命令"><span class="nav-number">1.4.16.</span> <span class="nav-text">比较有用的一些命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐资源"><span class="nav-number">1.4.17.</span> <span class="nav-text">推荐资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#形象记忆"><span class="nav-number">1.4.18.</span> <span class="nav-text">形象记忆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Thanks"><span class="nav-number">1.4.19.</span> <span class="nav-text">Thanks</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">任康可</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"conquerren"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

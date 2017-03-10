@@ -1,0 +1,787 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java,泛型," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="泛型非常有用，笑言之：『泛泛而谈』的类型，意思就是这个类型是一个不确定的类型，只有具体实现的时候才确定是什么类型。
+有一种东西，可以是很多种类型都通用的，但只有使用的时候才确定这个到底是什么具体的类型。
+举个例子：比如你有一个盒子，里面可以放任意不易碎的东西，那这个东西不确定，就可以先定义成『泛泛而谈』的类型，这时就可以计算盒子里有多少个东西，添加，减少东西的方法。
+当然，最典型的例子就是各种">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通俗易懂谈泛型(1)">
+<meta property="og:url" content="http://renkangke.github.io/2015/07/10/通俗易懂谈泛型/index.html">
+<meta property="og:site_name" content="Ren Kangke's Blog">
+<meta property="og:description" content="泛型非常有用，笑言之：『泛泛而谈』的类型，意思就是这个类型是一个不确定的类型，只有具体实现的时候才确定是什么类型。
+有一种东西，可以是很多种类型都通用的，但只有使用的时候才确定这个到底是什么具体的类型。
+举个例子：比如你有一个盒子，里面可以放任意不易碎的东西，那这个东西不确定，就可以先定义成『泛泛而谈』的类型，这时就可以计算盒子里有多少个东西，添加，减少东西的方法。
+当然，最典型的例子就是各种">
+<meta property="og:updated_time" content="2016-06-08T08:58:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="通俗易懂谈泛型(1)">
+<meta name="twitter:description" content="泛型非常有用，笑言之：『泛泛而谈』的类型，意思就是这个类型是一个不确定的类型，只有具体实现的时候才确定是什么类型。
+有一种东西，可以是很多种类型都通用的，但只有使用的时候才确定这个到底是什么具体的类型。
+举个例子：比如你有一个盒子，里面可以放任意不易碎的东西，那这个东西不确定，就可以先定义成『泛泛而谈』的类型，这时就可以计算盒子里有多少个东西，添加，减少东西的方法。
+当然，最典型的例子就是各种">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://renkangke.github.io/2015/07/10/通俗易懂谈泛型/"/>
+
+  <title> 通俗易懂谈泛型(1) | Ren Kangke's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Ren Kangke's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Focus on Android, Java, Performance Optimization, Open Source/Thought change lives</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/tags/技术" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-mobile-phone"></i> <br />
+            
+            技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-essay">
+          <a href="/tags/随笔" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-coffee"></i> <br />
+            
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/2014/09/10/关于我/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                通俗易懂谈泛型(1)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-07-10T06:48:33+08:00" content="Jul 10 2015">
+              Jul 10 2015
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/07/10/通俗易懂谈泛型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/10/通俗易懂谈泛型/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<ul>
+<li>泛型非常有用，笑言之：『泛泛而谈』的类型，意思就是这个类型是一个不确定的类型，只有具体实现的时候才确定是什么类型。</li>
+<li>有一种东西，可以是很多种类型都通用的，但只有使用的时候才确定这个到底是什么具体的类型。</li>
+<li>举个例子：比如你有一个盒子，里面可以放任意<code>不易碎的东西</code>，那这个东西不确定，就可以先定义成<code>『泛泛而谈』的类型</code>，这时就可以计算盒子里有多少个东西，添加，减少东西的方法。</li>
+<li>当然，最典型的例子就是各种集合类，你可以在各种集合里放任意类型，比如：ArrayList<t></t></li>
+<li>这里你可能想：『那我就放入一个Object，到使用时强制类型转换过来，不就得了吗？为什么非要用泛型呢？没必要啊。』少侠莫慌，往下看它的两个优点就知道了，且听我慢慢道来…</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<h2 id="为什么要用泛型"><a href="#为什么要用泛型" class="headerlink" title="为什么要用泛型"></a>为什么要用泛型</h2><p>意味着少侠你写的代码<code>可以被很多不同类型的对象所重用</code>–》读到这里你是不是就明白了：这就是<code>抽象</code>啊</p>
+<h2 id="使用泛型的好处"><a href="#使用泛型的好处" class="headerlink" title="使用泛型的好处"></a>使用泛型的好处</h2><ol>
+<li>解决多类型的强制类型转换–》很多不同类型对象可以重用，而不是强转，因为强转是不安全的。</li>
+<li>不需要错误检查，更加可读和安全</li>
+</ol>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p><code>泛型类</code>（generic class）：具有<strong>一个或多个类型变量</strong>的类</p>
+<h2 id="重要的通配符类型"><a href="#重要的通配符类型" class="headerlink" title="重要的通配符类型"></a>重要的通配符类型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;T&gt;  // 里面可以是任意大写字符 这个就表示任意类型、简单明了吧</div></pre></td></tr></table></figure>
+<h2 id="如何使用它？"><a href="#如何使用它？" class="headerlink" title="如何使用它？"></a>如何使用它？</h2><ul>
+<li><h4 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h4></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// 可以任意个类型</div><div class="line">public TestClass&lt;T&gt;&#123;&#125;</div><div class="line"></div><div class="line">public TestClass&lt;T, U&gt;&#123;&#125;</div><div class="line"></div><div class="line">public TestClass&lt;T, U, W&gt;&#123;&#125;</div></pre></td></tr></table></figure>
+<h5 id="使用规则"><a href="#使用规则" class="headerlink" title="使用规则"></a>使用规则</h5><ol>
+<li>尖括号括起来 </li>
+<li>放在类名的后面</li>
+</ol>
+<p>以上是泛型类</p>
+<ul>
+<li><h4 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h4></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public static &lt;T&gt; T getValue(T[] keys)&#123;</div><div class="line">	// 这是一个返回类型为T</div><div class="line">	// 参数是T的数组</div><div class="line">	// 的泛型方法</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="使用规则-1"><a href="#使用规则-1" class="headerlink" title="使用规则"></a>使用规则</h5><ol>
+<li><t>放在方法修饰符（public static）后面 </t></li>
+<li><t>放在方法返回值前面</t></li>
+<li><t>也叫类型变量 </t></li>
+</ol>
+<h2 id="类型变量的限定"><a href="#类型变量的限定" class="headerlink" title="类型变量的限定"></a>类型变量的限定</h2><p>说直白点就是，类型变量也是可以有条件的，就好比你去买书，历史类的书，这个就是条件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 一个时</div><div class="line"> public static &lt;T extends Comparable&gt; T min(T[] a）...</div><div class="line">// 多个时</div><div class="line"> public static &lt;T extends Comparable &amp; Serializable&gt; T min(T[] a）...</div></pre></td></tr></table></figure>
+<h2 id="泛型代码编译时是怎样运行的"><a href="#泛型代码编译时是怎样运行的" class="headerlink" title="泛型代码编译时是怎样运行的"></a>泛型代码编译时是怎样运行的</h2><ol>
+<li>泛型代码最终还是编译时还是运行在<code>虚拟机</code>上的</li>
+<li>虚拟机上没有泛型类型对象、只有普通的类和方法</li>
+<li>所有的泛型类型会被替代为与其对应的<code>原始类型（raw type）</code></li>
+<li><t>的原始类型是Object</t></li>
+<li><t extend="" comparable="" &="" serializable="">的原始类型是Comparable(<strong>就近原则</strong>)</t></li>
+<li>将没有方法的接口放在列表的末尾可以提高效率（因为编译器必要时需要插入强制类型转换）</li>
+</ol>
+<h2 id="泛型表达式以及泛型方法的翻译"><a href="#泛型表达式以及泛型方法的翻译" class="headerlink" title="泛型表达式以及泛型方法的翻译"></a>泛型表达式以及泛型方法的翻译</h2><p>当程序调用涉及到泛型时 </p>
+<ol>
+<li>翻译成原始类型</li>
+<li>必要时自动强制类型转换</li>
+<li>上面提到的就近原则会千万方法的插除，这个会带来<code>多态</code>以及方法覆盖的问题–》<code>合成的桥方法</code></li>
+</ol>
+<h2 id="泛型的局限性（不能做什么）"><a href="#泛型的局限性（不能做什么）" class="headerlink" title="泛型的局限性（不能做什么）"></a>泛型的局限性（不能做什么）</h2><h4 id="不能用基本类型实例化参数"><a href="#不能用基本类型实例化参数" class="headerlink" title="不能用基本类型实例化参数"></a>不能用基本类型实例化参数</h4><ol>
+<li>比如： 没有ArrayList<double> 只有ArrayList<double> 原因：类型擦除时带来的 Object不能存储double</double></double></li>
+<li>可以使用8种基本类型以及自定义的类</li>
+</ol>
+<h4 id="运行时类型查询-只适用于原始类型"><a href="#运行时类型查询-只适用于原始类型" class="headerlink" title="运行时类型查询 只适用于原始类型"></a>运行时类型查询 只适用于原始类型</h4><h2 id="通配符类型"><a href="#通配符类型" class="headerlink" title="通配符类型"></a>通配符类型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// 通配符类型</div><div class="line">TestClass&lt;? extends Thread&gt;</div><div class="line">// 通配符的超类型限定</div><div class="line">TestClass&lt;? super Thread&gt;</div><div class="line">// 无限定通配符 但不能在代码中使用？作为一种类型</div><div class="line">TestClass&lt;?&gt;</div></pre></td></tr></table></figure>
+<p>通配符类型不是一种类型变量</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag">#Java</a>
+          
+            <a href="/tags/泛型/" rel="tag">#泛型</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/05/周末小记/" rel="next" title="周末小记">
+                <i class="fa fa-chevron-left"></i> 周末小记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/14/Android-Studio-Gradle编译时『No-resource-found-that-matches-the-given-name』解决方法（windows系统）/" rel="prev" title="Android Studio Gradle编译时『No resource found that matches the given name』解决方法（windows系统的坑）">
+                Android Studio Gradle编译时『No resource found that matches the given name』解决方法（windows系统的坑） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/07/10/通俗易懂谈泛型/"
+     data-title="通俗易懂谈泛型(1)"
+     data-content=""
+     data-url="http://renkangke.github.io/2015/07/10/通俗易懂谈泛型/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/07/10/通俗易懂谈泛型/"
+           data-title="通俗易懂谈泛型(1)" data-url="http://renkangke.github.io/2015/07/10/通俗易懂谈泛型/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ww1.sinaimg.cn/large/65c8b1c5jw1ew2brnos75j20cs0csdgr.jpg"
+               alt="任康可" />
+          <p class="site-author-name" itemprop="name">任康可</p>
+          <p class="site-description motion-element" itemprop="description">Android\iOS\Open Source</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/renkangke" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/conquermin" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="/atom.xml" target="_blank" title="rss">
+                  
+                    <i class="fa fa-fw fa-rss"></i>
+                  
+                  rss
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/+renkangker/posts" target="_blank" title="google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                  google
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/ConquerRen" target="_blank" title="twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/renkangke" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.douban.com/people/renkangke/" target="_blank" title="douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:renkangke@gmail.com" target="_blank" title="mail">
+                  
+                    <i class="fa fa-fw fa-mail-reply"></i>
+                  
+                  mail
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要用泛型"><span class="nav-number">1.</span> <span class="nav-text">为什么要用泛型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用泛型的好处"><span class="nav-number">2.</span> <span class="nav-text">使用泛型的好处</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">3.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重要的通配符类型"><span class="nav-number">4.</span> <span class="nav-text">重要的通配符类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用它？"><span class="nav-number">5.</span> <span class="nav-text">如何使用它？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#泛型类"><span class="nav-number">5.0.1.</span> <span class="nav-text">泛型类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用规则"><span class="nav-number">5.0.1.1.</span> <span class="nav-text">使用规则</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#泛型方法"><span class="nav-number">5.0.2.</span> <span class="nav-text">泛型方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用规则-1"><span class="nav-number">5.0.2.1.</span> <span class="nav-text">使用规则</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型变量的限定"><span class="nav-number">6.</span> <span class="nav-text">类型变量的限定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#泛型代码编译时是怎样运行的"><span class="nav-number">7.</span> <span class="nav-text">泛型代码编译时是怎样运行的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#泛型表达式以及泛型方法的翻译"><span class="nav-number">8.</span> <span class="nav-text">泛型表达式以及泛型方法的翻译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#泛型的局限性（不能做什么）"><span class="nav-number">9.</span> <span class="nav-text">泛型的局限性（不能做什么）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#不能用基本类型实例化参数"><span class="nav-number">9.0.1.</span> <span class="nav-text">不能用基本类型实例化参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行时类型查询-只适用于原始类型"><span class="nav-number">9.0.2.</span> <span class="nav-text">运行时类型查询 只适用于原始类型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通配符类型"><span class="nav-number">10.</span> <span class="nav-text">通配符类型</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">任康可</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"conquerren"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

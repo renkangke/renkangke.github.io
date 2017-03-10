@@ -1,0 +1,793 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,webview,hybrid," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="hybrid本身的意思是混合的，其实用在这里，就是指的是原生和Web开发混合起来，各展所长。
+
+
+最近在做Android hybrid方面的研究和开发。有一些关于WebView开发的心得体会，特分享于大家。
+之前我在这方面有两篇相关博客，分别介绍了Android中webview与javascript交互方法以及Android JS Debug技巧。这两篇文章对一些WebView的基本操作、使用以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android-hybrid开发之webView所有请求拦截及修改功能">
+<meta property="og:url" content="http://renkangke.github.io/2015/09/27/Hybrid开发之webView所有请求拦截及修改功能/index.html">
+<meta property="og:site_name" content="Ren Kangke's Blog">
+<meta property="og:description" content="hybrid本身的意思是混合的，其实用在这里，就是指的是原生和Web开发混合起来，各展所长。
+
+
+最近在做Android hybrid方面的研究和开发。有一些关于WebView开发的心得体会，特分享于大家。
+之前我在这方面有两篇相关博客，分别介绍了Android中webview与javascript交互方法以及Android JS Debug技巧。这两篇文章对一些WebView的基本操作、使用以">
+<meta property="og:updated_time" content="2016-08-16T03:46:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android-hybrid开发之webView所有请求拦截及修改功能">
+<meta name="twitter:description" content="hybrid本身的意思是混合的，其实用在这里，就是指的是原生和Web开发混合起来，各展所长。
+
+
+最近在做Android hybrid方面的研究和开发。有一些关于WebView开发的心得体会，特分享于大家。
+之前我在这方面有两篇相关博客，分别介绍了Android中webview与javascript交互方法以及Android JS Debug技巧。这两篇文章对一些WebView的基本操作、使用以">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://renkangke.github.io/2015/09/27/Hybrid开发之webView所有请求拦截及修改功能/"/>
+
+  <title> Android-hybrid开发之webView所有请求拦截及修改功能 | Ren Kangke's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Ren Kangke's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Focus on Android, Java, Performance Optimization, Open Source/Thought change lives</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tech">
+          <a href="/tags/技术" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-mobile-phone"></i> <br />
+            
+            技术
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-essay">
+          <a href="/tags/随笔" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-coffee"></i> <br />
+            
+            随笔
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/2014/09/10/关于我/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android-hybrid开发之webView所有请求拦截及修改功能
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-09-27T08:54:16+08:00" content="Sep 27 2015">
+              Sep 27 2015
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/09/27/Hybrid开发之webView所有请求拦截及修改功能/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/27/Hybrid开发之webView所有请求拦截及修改功能/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><code>hybrid</code>本身的意思是混合的，其实用在这里，就是指的是原生和<code>Web</code>开发混合起来，各展所长。</p>
+</blockquote>
+<ul>
+<li>最近在做<code>Android</code> <code>hybrid</code>方面的研究和开发。有一些关于<code>WebView</code>开发的心得体会，特分享于大家。</li>
+<li>之前我在这方面有两篇相关博客，分别介绍了<a href="http://renkangke.github.io/2015/07/21/Android%E4%B8%ADwebview%E4%B8%8Ejavascript%E4%BA%A4%E4%BA%92%E6%96%B9%E6%B3%95/">Android中webview与javascript交互方法</a>以及<a href="http://renkangke.github.io/2015/08/27/Android-JS-Debug%E6%8A%80%E5%B7%A7/">Android JS Debug技巧</a>。这两篇文章对一些<code>WebView</code>的基本操作、使用以及调试进行了总结。</li>
+<li>今天我会对在开发Web<code>离线包</code>遇到的问题、对<code>webView</code>请求<code>请求拦截以及调整</code>这些方面做介绍。</li>
+</ul>
+<h2 id="hybrid离线包"><a href="#hybrid离线包" class="headerlink" title="hybrid离线包"></a>hybrid离线包</h2><p>因为<code>hybrid</code>方案使用<code>webView</code>加载，所以速度上有点慢，我们采用在本地使用离线包的形式、这样加载来提升速度，从而不受网络的影响。</p>
+<p>这样做就需要使用 <code>file:///</code>协议来加载本地离线<code>web</code>页面，这样使用起来发现会导致一个问题，服务端去拿存储进去的<code>cookie</code>值，在大部分<code>Android</code>手机和部分<code>iPhone</code>手机拿不到，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 加载本地文件</span></div><div class="line">mWebView.loadUrl(<span class="string">"file:///android_asset/test.html"</span>);</div></pre></td></tr></table></figure>
+<p>经过分析，发现应该是因为协议的问题，我们用的是<code>file:///</code>协议,而用<code>http</code>协议就没有这个问题。</p>
+<p>这样的话离线就遇到这样的问题，要么服务器端做一个兼容，不用<code>cookie</code>,这样很麻烦。或者是使用JS调用原生方法，每一个网络请求都起客户端进行封装，这样也是要改动非常多。</p>
+<p>最终发现<code>webView</code>有这样一个方法<code>shouldInterceptRequest</code>,这个方法会在每一个请求执行前，进行拦截，然后开发者可以任意处理后，再返回一个处理后的网络请求<code>WebResourceResponse</code>，这个方法真是太酷了。</p>
+<ul>
+<li>与是我们就可以将本地<code>file</code>协议先伪装成<code>http</code>协议，先随便请求一个网络地址，这个地址是什么不重要，只要首页一样就行了</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> String mLocalUrlPrefix = <span class="string">"http://test.com/app/"</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mWebView.loadUrl(mLocalUrlPrefix + currentVersion + <span class="string">"/test.html"</span>);</div></pre></td></tr></table></figure>
+<ul>
+<li>加载后，在此处进行拦截所有的请求，然后做处理，将所有的请求全部转换为本地文件</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> WebResourceResponse <span class="title">shouldInterceptRequest</span><span class="params">(<span class="keyword">final</span> WebView webView, WebResourceRequest webResourceRequest)</span> </span>&#123;</div><div class="line">        <span class="keyword">final</span> String url = webResourceRequest.getUrl().toString();</div><div class="line"></div><div class="line">        webResourceRequest.getRequestHeaders().put(HJ_USER_AGENT, RunTimeManager.instance().getUserAgent());</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (url.contains(mLocalUrlPrefix)) &#123;</div><div class="line">            <span class="keyword">return</span> handleRequest(url);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> getWebResourceResponse(url);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>其中 <code>WebResourceResponse</code> 主要是由三个部分组成</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">WebResourceResponse</span><span class="params">(String mimeType, String encoding, InputStream data)</span> </span>&#123;</div><div class="line">       mMimeType = mimeType;</div><div class="line">       mEncoding = encoding;</div><div class="line">       mInputStream = data;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<p>其中 <code>mimeType</code>为请求文件的类型、<code>encoding</code>为文件的编码、<code>data</code>为文件的<code>inputStream</code></p>
+<p><code>mimeType</code>这个可以根据文件后缀来映射，或者用第三方开源的工具，<code>encoding</code>我们一般就用<code>utf-8</code>，文件流就直接读取就行了。</p>
+<p>例如这样读取：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (TextUtils.equals(version, OfflineHtmlManager.DEFAULT_VERSION)) &#123;</div><div class="line">            inputStream = AssetUtils.getFromAssets(<span class="keyword">this</span>, fileName);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">try</span> &#123;</div><div class="line">                String path = getApplicationContext().getCacheDir().getAbsolutePath() + <span class="string">"/"</span> + fileName;</div><div class="line">                File file = <span class="keyword">new</span> File(path);</div><div class="line">                inputStream = <span class="keyword">new</span> FileInputStream(file);</div><div class="line">            &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>这样就完美的将本地<code>web</code>页面<code>file</code>协议请求伪装成了<code>http</code>协议的请求，这样cookie的问题就解决了。</li>
+</ul>
+<h2 id="webView中的所有网络请求都要添加自定义header"><a href="#webView中的所有网络请求都要添加自定义header" class="headerlink" title="webView中的所有网络请求都要添加自定义header"></a>webView中的所有网络请求都要添加自定义header</h2><ul>
+<li>肯定有很多产品会希望webView中的所有网络请求都要添加自定义header,但webView只提供了一种添加header的方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">loadUrl</span><span class="params">(String url, Map&lt;String, String&gt; additionalHttpHeaders)</span> </span>&#123;</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Stub!"</span>);</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>但这种方法只能在<code>url</code>中添加，其它页面中的请求就添加不上了，那怎么办呢？</p>
+<p>此时我们一思考就会发现，用上面<code>shouldInterceptRequest</code>这个拦截所有请求的方法就能解决这个问题。<br>我们在所有网络请求到达时，拦截，然后用<code>http</code>请求的方法，先添加header，然后去请求这个文件流，然后返回组装成<code>webView</code>需要的<code>WebResourceResponse</code>是不是很赞，哈哈。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span> &#123;</div><div class="line">			  <span class="keyword">if</span> (TextUtils.equals(method, HttpGet.METHOD_NAME)) &#123;</div><div class="line">              httpRequest = <span class="keyword">new</span> HttpGet(url);</div><div class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> (TextUtils.equals(method, HttpPost.METHOD_NAME)) &#123;</div><div class="line">              httpRequest = <span class="keyword">new</span> HttpPost(url);</div><div class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> (TextUtils.equals(method, HttpHead.METHOD_NAME)) &#123;</div><div class="line">              httpRequest = <span class="keyword">new</span> HttpHead(url);</div><div class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> (TextUtils.equals(method, HttpPut.METHOD_NAME)) &#123;</div><div class="line">              httpRequest = <span class="keyword">new</span> HttpPut(url);</div><div class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> (TextUtils.equals(method, HttpDelete.METHOD_NAME)) &#123;</div><div class="line">              httpRequest = <span class="keyword">new</span> HttpDelete(url);</div><div class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> (TextUtils.equals(method, HttpTrace.METHOD_NAME)) &#123;</div><div class="line">              httpRequest = <span class="keyword">new</span> HttpTrace(url);</div><div class="line">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> (TextUtils.equals(method, HttpOptions.METHOD_NAME)) &#123;</div><div class="line">              httpRequest = <span class="keyword">new</span> HttpOptions(url);</div><div class="line">          &#125;</div><div class="line">          DefaultHttpClient client = <span class="keyword">new</span> DefaultHttpClient();</div><div class="line">          HttpPost httpPost = <span class="keyword">new</span> HttpPost(url);</div><div class="line">          httpPost.setHeader(MY_USER_AGENT, RunTimeManager.instance().getUserAgent());</div><div class="line">          HttpResponse httpResponse = client.execute(httpPost);</div><div class="line">          InputStream responseInputStream = httpResponse.getEntity().getContent();</div><div class="line"></div><div class="line">          String[] temp = url.split(<span class="string">"\\."</span>);</div><div class="line">          String suffix = temp[temp.length - <span class="number">1</span>];</div><div class="line">          String encoding = UTF_8;</div><div class="line"></div><div class="line">	  <span class="comment">// get file suffix</span></div><div class="line">          suffix = suffix.replace(<span class="string">"?"</span>,<span class="string">"-"</span>);</div><div class="line">          String[] suffixStrings = suffix.split(<span class="string">"-"</span>);</div><div class="line"></div><div class="line">          suffix = suffixStrings[<span class="number">0</span>];</div><div class="line">          <span class="comment">// According to the suffix to get content type.</span></div><div class="line">          String type = Html5MimeUtil.getMimeContentType(<span class="keyword">this</span>, Html5MimeUtil.MIME_TXT_NAME).get(suffix);</div><div class="line">          <span class="keyword">return</span> <span class="keyword">new</span> WebResourceResponse(type, encoding, responseInputStream);</div><div class="line">      &#125; <span class="keyword">catch</span> (ClientProtocolException e) &#123;</div><div class="line">          <span class="comment">//return null to tell WebView we failed to fetch it WebView should try again.</span></div><div class="line">          <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">      &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">          <span class="comment">//return null to tell WebView we failed to fetch it WebView should try again.</span></div><div class="line">          <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
+<h2 id="Cookie问题"><a href="#Cookie问题" class="headerlink" title="Cookie问题"></a>Cookie问题</h2><ul>
+<li>在使用第三方微博登录时，发现当用户没有安装微博时，微博web端会在登陆成功后清除整个应用<code>webView</code>的<code>cookie</code>,这个就导致此时我们的<code>cookie</code>丢失，失效的问题，怎么解决呢？</li>
+<li><p>其实仔细研究发现<code>webView</code>也为我们提供了非常有用的cookie设置和cookie读取问题</p>
+</li>
+<li><p>我们可以首先要读取<code>cookie</code>，放在内存中</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">if</span> (cookieManager.hasCookies()) &#123;</div><div class="line">            mCookie = cookieManager.getCookie(LoginActivity.DAMAIN);</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>然后在微博将<code>cookie</code>清除后，将<code>cookie</code>再保存进去<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">saveCookies</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (!TextUtils.isEmpty(mCookie)) &#123;</div><div class="line">            CookieSyncManager.createInstance(mContext);</div><div class="line">            CookieManager.getInstance().setAcceptCookie(<span class="keyword">true</span>);</div><div class="line">            CookieManager.getInstance().setCookie(LoginActivity.DAMAIN, mCookie);</div><div class="line">            CookieSyncManager.getInstance().sync();</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这样问题就方便地解决了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li><code>hybrid</code>是一种很好的方案，<code>webView</code>提供的功能很强大，后续有更多有好的想法会持续分享给大家。</li>
+<li>这是一个种很好的方案，两个平台解决方案都是想通的，iOS里的这个方法叫<code>cachedResponseForRequest</code>.</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/webview/" rel="tag">#webview</a>
+          
+            <a href="/tags/hybrid/" rel="tag">#hybrid</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/20/Gradle语法总结一/" rel="next" title="Gradle语法总结一">
+                <i class="fa fa-chevron-left"></i> Gradle语法总结一
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/22/用Android-Studio进行NDK开发的方法/" rel="prev" title="用Android Studio进行NDK开发的方法">
+                用Android Studio进行NDK开发的方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/09/27/Hybrid开发之webView所有请求拦截及修改功能/"
+     data-title="Android-hybrid开发之webView所有请求拦截及修改功能"
+     data-content=""
+     data-url="http://renkangke.github.io/2015/09/27/Hybrid开发之webView所有请求拦截及修改功能/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/09/27/Hybrid开发之webView所有请求拦截及修改功能/"
+           data-title="Android-hybrid开发之webView所有请求拦截及修改功能" data-url="http://renkangke.github.io/2015/09/27/Hybrid开发之webView所有请求拦截及修改功能/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ww1.sinaimg.cn/large/65c8b1c5jw1ew2brnos75j20cs0csdgr.jpg"
+               alt="任康可" />
+          <p class="site-author-name" itemprop="name">任康可</p>
+          <p class="site-description motion-element" itemprop="description">Android\iOS\Open Source</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/renkangke" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/conquermin" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="/atom.xml" target="_blank" title="rss">
+                  
+                    <i class="fa fa-fw fa-rss"></i>
+                  
+                  rss
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://plus.google.com/+renkangker/posts" target="_blank" title="google">
+                  
+                    <i class="fa fa-fw fa-google"></i>
+                  
+                  google
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/ConquerRen" target="_blank" title="twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/renkangke" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.douban.com/people/renkangke/" target="_blank" title="douban">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:renkangke@gmail.com" target="_blank" title="mail">
+                  
+                    <i class="fa fa-fw fa-mail-reply"></i>
+                  
+                  mail
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#hybrid离线包"><span class="nav-number">1.</span> <span class="nav-text">hybrid离线包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webView中的所有网络请求都要添加自定义header"><span class="nav-number">2.</span> <span class="nav-text">webView中的所有网络请求都要添加自定义header</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie问题"><span class="nav-number">3.</span> <span class="nav-text">Cookie问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">任康可</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"conquerren"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
