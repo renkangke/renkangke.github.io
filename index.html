@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android, iOS" />
+  <meta name="keywords" content="Android, iOS, Web, Blog" />
 
 
 
@@ -84,15 +84,15 @@
 
 
 
-<meta name="description" content="Android\iOS\Open Source">
+<meta name="description" content="Android,iOS,Open Source,Code,Mind">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ren Kangke's Blog">
-<meta property="og:url" content="http://renkangke.github.io/index.html">
+<meta property="og:url" content="http://www.kangke.ren/index.html">
 <meta property="og:site_name" content="Ren Kangke's Blog">
-<meta property="og:description" content="Android\iOS\Open Source">
+<meta property="og:description" content="Android,iOS,Open Source,Code,Mind">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ren Kangke's Blog">
-<meta name="twitter:description" content="Android\iOS\Open Source">
+<meta name="twitter:description" content="Android,iOS,Open Source,Code,Mind">
 
 
 
@@ -100,12 +100,12 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"always"},
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
-      author: '博主'
+      userId: 8752702,
+      author: '博主任康可'
     }
   };
 </script>
@@ -113,7 +113,7 @@
 
 
 
-  <link rel="canonical" href="http://renkangke.github.io/"/>
+  <link rel="canonical" href="http://www.kangke.ren/"/>
 
   <title> Ren Kangke's Blog </title>
 </head>
@@ -152,7 +152,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">Focus on Android, Java, Performance Optimization, Open Source/Thought change lives</p>
+  <p class="site-subtitle">Focus on Android, Java, Performance Optimization, Open Source/Thought Change Lives</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -201,7 +201,7 @@
       
         
         <li class="menu-item menu-item-tech">
-          <a href="/tags/技术" rel="section">
+          <a href="/tags/技术/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-mobile-phone"></i> <br />
             
@@ -210,8 +210,18 @@
         </li>
       
         
+        <li class="menu-item menu-item-android">
+          <a href="/tags/android/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-android"></i> <br />
+            
+            Android
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-essay">
-          <a href="/tags/随笔" rel="section">
+          <a href="/tags/随笔/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-coffee"></i> <br />
             
@@ -226,6 +236,16 @@
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
           </a>
         </li>
       
@@ -318,11 +338,13 @@
 
       
         
-          
-            <p>终于为github.renkangke.io配置上了个人域名：<a href="http://www.kangke.ren/" target="_blank" rel="external">http://www.kangke.ren/</a> 无意中发现有.ren的顶级域名，恰巧kangke.ren还没有人注册，于是抢注了一个，希望未来能够改变状态，让自己的思考在这个博客上生根发芽。</p>
+          <p>终于为github.renkangke.io配置上了个人域名：<a href="http://www.kangke.ren/">http://www.kangke.ren/</a> 无意中发现有.ren的顶级域名，恰巧kangke.ren还没有人注册，于是抢注了一个，希望未来能够改变状态，让自己的思考在这个博客上生根发芽。</p>
 <p>未来会更多的记录：技术文章、思考、生活。</p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/03/10/新的开始/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -420,103 +442,18 @@
 
       
         
-          
-            <p>一般很久未写文章，待从头，不免感叹一声，呜呼哀哉！反思良久，为自己找到如下三个借口(生活不易啊)：</p>
+          <p>一般很久未写文章，待从头，不免感叹一声，呜呼哀哉！反思良久，为自己找到如下三个借口(生活不易啊)：</p>
 <ol>
 <li>前段时间着实忙碌，其实xxx有句名言说的好：时间就像乳沟，挤挤总会有的。</li>
 <li>千万不可小瞧人的惰性，这力量是无穷尽的。</li>
 <li>不要一味追求完美，先开始再说！</li>
 </ol>
 <p>今天要讨论的话题是时间与效率。也是我最近在思考的问题。时间的残酷无情催生出了我们对效率的渴望，纵观当今世界，大部分公司都在做着提升效率的事情，Google提升搜索效率， Uber提升出行效率，微信提升沟通效率，阿里提升购物效率，工具的本质皆是如此。所以效率的重要性自不用多说。下文是我部分关于时间与效率的思考，仅供大家参考。</p>
-<h2 id="一、关于时间的残酷事实"><a href="#一、关于时间的残酷事实" class="headerlink" title="一、关于时间的残酷事实"></a>一、关于时间的残酷事实</h2><ul>
-<li>对于时间，需要认清以下事实：</li>
-</ul>
-<ol>
-<li>每个人每天的时间总量是固定的。</li>
-<li>每个人剩下的时间都是在不断减少不会停止的。</li>
-<li>每个人剩下的时间可能随时为0。</li>
-<li>1万天为27年，如果你现在23岁，再过1万天，你就50岁了……（多么恐怖的事实）。</li>
-<li>每个人大部分时间都花在了睡觉、吃饭、洗漱，上卫生间。</li>
-</ol>
-<ul>
-<li>有人粗略估算了一生花费的时间：</li>
-</ul>
-<ol>
-<li>站立：30年</li>
-<li>睡觉：23年</li>
-<li>工作：10-12年</li>
-<li>吃饭：6年</li>
-<li>看电视：6年</li>
-<li>……</li>
-</ol>
-<ul>
-<li>所以人生苦短啊，小伙伴们！</li>
-</ul>
-<h2 id="二、关于效率的提升技巧"><a href="#二、关于效率的提升技巧" class="headerlink" title="二、关于效率的提升技巧"></a>二、关于效率的提升技巧</h2><p>上面列举的事实触目惊心，既然时间如此宝贵，那我们能否在时间总长度无法改变且时间不断流逝的情况下做点什么呢？我们希望在有限的时间里做更多自己想做的有趣的有意义的事情，而非把时间和生命浪费在无意义的小事杂事琐事上。我们只有不断提高效率将自己不得不做，又没什么意思的琐事速度做完，用节省出来时间来做自己想做的事，学习提升自己，看更大的世界，探索更多有趣的事，扩展生命的宽度(不断装逼中…)</p>
-<p>终于引申到我们本节要讲述的话题：</p>
-<blockquote>
-<p><strong>提升效率</strong></p>
-</blockquote>
-<p>物理上对于机械效率的定义：机械输出功（<strong>有用功</strong>）和输入功（<strong>总功</strong>）的比值。</p>
-<p>由此可见，有两种大的方向提升效率</p>
-<ol>
-<li>增大总功的时间</li>
-<li>减少做有用功能的时间</li>
-</ol>
-<h3 id="1-增大总功的时间"><a href="#1-增大总功的时间" class="headerlink" title="1. 增大总功的时间"></a>1. 增大总功的时间</h3><h4 id="a-多线程处理，同时做多件事。"><a href="#a-多线程处理，同时做多件事。" class="headerlink" title="a. 多线程处理，同时做多件事。"></a>a. 多线程处理，同时做多件事。</h4><p>主要是身体的活动和大脑的活动的同步进行。这样可以增加你的大脑被占满思考的时间。比如：</p>
-<ul>
-<li>运动，例如：跑步时听英语，听书，思考</li>
-<li>出行，例如：做地铁时看书，活动身体</li>
-<li>洗漱，例如：刷下时思考一些问题</li>
-</ul>
-<h4 id="b-强身健体。"><a href="#b-强身健体。" class="headerlink" title="b. 强身健体。"></a>b. 强身健体。</h4><p>只有健康的身体，才能每天有更多的精力学习，思考，游玩，做很多自己想做的事。健康是一件很重要的事，人的身体其实是很脆弱的。有很多问题是医学无法治愈的，当你的身体出了某些问题时，而医学又很难解决时，你会非常痛苦，这会占用你大量的时间。</p>
-<ul>
-<li>运动和学习要做到适度。<ul>
-<li>运动过度：经常会导致半月板受伤，韧带拉伤等疾病。</li>
-<li>学习过度：现代社会，有了手机和电脑，加之人的颈椎、脊柱、背部、腰部、膝盖关节等都很脆弱，很多人都有颈椎病、肩周炎、筋膜炎，腰肌劳损，腰间盘突出等问题。这些疾病是医生无法治愈的，伴随终生，非常痛苦，极大地消耗精力，影响学习，思考。</li>
-<li>解决方案：不过有这些问题，也不要沮丧，良好的生活习惯和运动恢复能极大的缓解痛苦。身体为一切之本，切记切记。<ul>
-<li>正解的生活习惯，坐姿和站姿要注意</li>
-<li>用手机时间不要过久(可能导致肩周炎)</li>
-<li>有计划的锻炼（比如游泳等）</li>
-<li>注意一些激烈运动的运动前热身和运动保护，以及正确的姿势(例如不当的羽毛球姿势和过度运动会毁了你的膝盖)</li>
-<li>科学的饮食</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-减少做有用功所花费的时间"><a href="#2-减少做有用功所花费的时间" class="headerlink" title="2. 减少做有用功所花费的时间"></a>2. 减少做有用功所花费的时间</h3><p>这里有两点要注意：</p>
-<ul>
-<li>有用功：要确保做的是正确的事，当然什么是正确的事还需要你自己去判断。</li>
-</ul>
-<h4 id="1-尽量做正确的事"><a href="#1-尽量做正确的事" class="headerlink" title="1. 尽量做正确的事"></a>1. 尽量做正确的事</h4><p>不正确的事，即使提高效率做完也没有很大的意义，</p>
-<ul>
-<li>比如刷朋友圈、刷知乎、或者是无聊的打牌，已经睡足了觉，还继续赖床，躲在沙发上看娱乐节目，追各种肥皂剧。</li>
-<li>做事的目的、价值和意义没有想明白的事情：例如盲目跟风去追一些时下最热的技术，而不是从内心出发，思考好到底要不要投入时间来做，毕竟时间是一种很宝贵的资源。</li>
-</ul>
-<h4 id="2-尽快地完成生活中的琐事"><a href="#2-尽快地完成生活中的琐事" class="headerlink" title="2. 尽快地完成生活中的琐事"></a>2. 尽快地完成生活中的琐事</h4><p>生活中琐事很多，虽然很无聊，但又不得不做，此时就可以调整心态，提高效率完成这些事。例如：</p>
-<ul>
-<li>整理房间，哪拿哪放，给物品贴标签，减少找东西的时间。</li>
-<li>每天的洗漱时间，可以同时听一些书，或者思考一个问题。</li>
-<li>并行任务：上班的路上，出去出差旅行回家的火车上都是可以同时利用时间。</li>
-</ul>
-<h4 id="3-尽快地完成工作上的事"><a href="#3-尽快地完成工作上的事" class="headerlink" title="3. 尽快地完成工作上的事"></a>3. 尽快地完成工作上的事</h4><p>工作中的事情涉及职业生涯，自我提高及自我价值，并且占用一生中很大一部分时间。所以更要提高效率。</p>
-<ul>
-<li>不要做无意义的加班，本来8个小时的任务，你可以提高效率，少和大家闲聊，合理安排工作时间，用完整的时间段去解决最重要的任务。如果你大部分时间都是在公司加班，说明你效率不高。上班时间没有好好利用。</li>
-<li>工作中重复三次以上的事情要尝试能否自动化。写脚本等来处理。</li>
-<li>善于总结，每天每周每月的自我反思，总结。</li>
-<li>一定要注意解决问题的方法很重要。方法决定效率。</li>
-<li>自我学习和充电，能促进在工作上更高的效率和更大的价值。</li>
-<li>多思考，提前预防，要事优先。</li>
-<li>工作沟通中多站在对方角度思考问题。</li>
-<li>完整的时间段+专注，这一点非常重要。</li>
-</ul>
-<h4 id="4-提高学习，思考、记忆的效率"><a href="#4-提高学习，思考、记忆的效率" class="headerlink" title="4. 提高学习，思考、记忆的效率"></a>4. 提高学习，思考、记忆的效率</h4><p>这一部分尤为重要，需要长时间的钻研和习惯培养，这一块我会另找时间论述。</p>
-<h4 id="5-其它"><a href="#5-其它" class="headerlink" title="5. 其它"></a>5. 其它</h4><p>还有很多其它点：比如推迟满足感，自控力，成熟心态的控制等。</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>最近我一直在思考相关的事情，已经开始在尝试和实践，但这些习惯的养成需要比较长的时间，需要坚持，就好像很多人，道理虽懂，但依然过不好这一生。</p>
-<p>推荐大家三本书 《少有人走的路》《把时间当做朋友》《暗时间》</p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/02/21/时间与效率/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -725,7 +662,7 @@
 </blockquote>
 <ul>
 <li>最近在做<code>Android</code> <code>hybrid</code>方面的研究和开发。有一些关于<code>WebView</code>开发的心得体会，特分享于大家。</li>
-<li>之前我在这方面有两篇相关博客，分别介绍了<a href="http://renkangke.github.io/2015/07/21/Android%E4%B8%ADwebview%E4%B8%8Ejavascript%E4%BA%A4%E4%BA%92%E6%96%B9%E6%B3%95/">Android中webview与javascript交互方法</a>以及<a href="http://renkangke.github.io/2015/08/27/Android-JS-Debug%E6%8A%80%E5%B7%A7/">Android JS Debug技巧</a>。这两篇文章对一些<code>WebView</code>的基本操作、使用以及调试进行了总结。</li>
+<li>之前我在这方面有两篇相关博客，分别介绍了<a href="http://renkangke.github.io/2015/07/21/Android%E4%B8%ADwebview%E4%B8%8Ejavascript%E4%BA%A4%E4%BA%92%E6%96%B9%E6%B3%95/" target="_blank" rel="external">Android中webview与javascript交互方法</a>以及<a href="http://renkangke.github.io/2015/08/27/Android-JS-Debug%E6%8A%80%E5%B7%A7/" target="_blank" rel="external">Android JS Debug技巧</a>。这两篇文章对一些<code>WebView</code>的基本操作、使用以及调试进行了总结。</li>
 <li>今天我会对在开发Web<code>离线包</code>遇到的问题、对<code>webView</code>请求<code>请求拦截以及调整</code>这些方面做介绍。</li>
 </ul>
 <h2 id="hybrid离线包"><a href="#hybrid离线包" class="headerlink" title="hybrid离线包"></a>hybrid离线包</h2><p>因为<code>hybrid</code>方案使用<code>webView</code>加载，所以速度上有点慢，我们采用在本地使用离线包的形式、这样加载来提升速度，从而不受网络的影响。</p>
@@ -1058,7 +995,7 @@
                src="http://ww1.sinaimg.cn/large/65c8b1c5jw1ew2brnos75j20cs0csdgr.jpg"
                alt="任康可" />
           <p class="site-author-name" itemprop="name">任康可</p>
-          <p class="site-description motion-element" itemprop="description">Android\iOS\Open Source</p>
+          <p class="site-description motion-element" itemprop="description">Android,iOS,Open Source,Code,Mind</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -1166,6 +1103,20 @@
 
         
         
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://jakewharton.com/blog/" title="Jakewharton" target="_blank">Jakewharton</a>
+                </li>
+              
+            </ul>
+          </div>
+        
 
       </section>
 
@@ -1183,7 +1134,7 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
+  &copy;  2014 - 
   <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
@@ -1203,6 +1154,22 @@
 </div>
 
         
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
 
         
       </div>
@@ -1301,6 +1268,10 @@
 
   
     
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
   
 
 
@@ -1315,6 +1286,9 @@
   
 
   
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
 
 </body>
 </html>

@@ -87,7 +87,7 @@
 <meta name="description" content="缘起何方看苹果2014年秋季发布会时，闲来无事，遂临时起意，用github、hexo、node.js将这个博客搭起来了。第二天早上开会时，东少看见我在整博客theme，目露不屑之色，鄙咦道：我曾见过最有毅力者，亦不过坚持写20篇博文而已，你肯定是搭好博客后便束之高阁……。为了回应小人的打击，特以此为证，坚持写博客，勤耕不辍，以挫东少之气，哈哈哈哈">
 <meta property="og:type" content="article">
 <meta property="og:title" content="开始的开始">
-<meta property="og:url" content="http://renkangke.github.io/2014/09/10/开篇/index.html">
+<meta property="og:url" content="http://www.kangke.ren/2014/09/10/开篇/index.html">
 <meta property="og:site_name" content="Ren Kangke's Blog">
 <meta property="og:description" content="缘起何方看苹果2014年秋季发布会时，闲来无事，遂临时起意，用github、hexo、node.js将这个博客搭起来了。第二天早上开会时，东少看见我在整博客theme，目露不屑之色，鄙咦道：我曾见过最有毅力者，亦不过坚持写20篇博文而已，你肯定是搭好博客后便束之高阁……。为了回应小人的打击，特以此为证，坚持写博客，勤耕不辍，以挫东少之气，哈哈哈哈">
 <meta property="og:updated_time" content="2016-06-08T08:58:43.000Z">
@@ -101,12 +101,12 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"always"},
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
-      author: '博主'
+      userId: 8752702,
+      author: '博主任康可'
     }
   };
 </script>
@@ -114,7 +114,7 @@
 
 
 
-  <link rel="canonical" href="http://renkangke.github.io/2014/09/10/开篇/"/>
+  <link rel="canonical" href="http://www.kangke.ren/2014/09/10/开篇/"/>
 
   <title> 开始的开始 | Ren Kangke's Blog </title>
 </head>
@@ -151,7 +151,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">Focus on Android, Java, Performance Optimization, Open Source/Thought change lives</p>
+  <p class="site-subtitle">Focus on Android, Java, Performance Optimization, Open Source/Thought Change Lives</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -200,7 +200,7 @@
       
         
         <li class="menu-item menu-item-tech">
-          <a href="/tags/技术" rel="section">
+          <a href="/tags/技术/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-mobile-phone"></i> <br />
             
@@ -209,8 +209,18 @@
         </li>
       
         
+        <li class="menu-item menu-item-android">
+          <a href="/tags/android/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-android"></i> <br />
+            
+            Android
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-essay">
-          <a href="/tags/随笔" rel="section">
+          <a href="/tags/随笔/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-coffee"></i> <br />
             
@@ -225,6 +235,16 @@
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
           </a>
         </li>
       
@@ -302,6 +322,11 @@
           
 
           
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
         </div>
       </header>
     
@@ -322,12 +347,38 @@
     <div>
       
         
+<div id="wechat_subscriber" style="display: block； padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="https://ws1.sinaimg.cn/large/65c8b1c5gy1fdja8lavd0j20zk0zkn12" alt="任康可 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的二维码，订阅我的微信公众号！</div>
+</div>
+
       
     </div>
 
     <div>
       
         
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="https://ws1.sinaimg.cn/large/65c8b1c5gy1fdj9k6qhrwj20yf19fmzd" alt="任康可 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="https://ws1.sinaimg.cn/large/65c8b1c5gy1fdj9kvpuvhj20u019j7ag" alt="任康可 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
 
       
     </div>
@@ -377,7 +428,7 @@
         <div class="ds-share flat" data-thread-key="2014/09/10/开篇/"
      data-title="开始的开始"
      data-content=""
-     data-url="http://renkangke.github.io/2014/09/10/开篇/">
+     data-url="http://www.kangke.ren/2014/09/10/开篇/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -408,7 +459,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2014/09/10/开篇/"
-           data-title="开始的开始" data-url="http://renkangke.github.io/2014/09/10/开篇/">
+           data-title="开始的开始" data-url="http://www.kangke.ren/2014/09/10/开篇/">
       </div>
     
   </div>
@@ -448,7 +499,7 @@
                src="http://ww1.sinaimg.cn/large/65c8b1c5jw1ew2brnos75j20cs0csdgr.jpg"
                alt="任康可" />
           <p class="site-author-name" itemprop="name">任康可</p>
-          <p class="site-description motion-element" itemprop="description">Android\iOS\Open Source</p>
+          <p class="site-description motion-element" itemprop="description">Android,iOS,Open Source,Code,Mind</p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -556,6 +607,20 @@
 
         
         
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://jakewharton.com/blog/" title="Jakewharton" target="_blank">Jakewharton</a>
+                </li>
+              
+            </ul>
+          </div>
+        
 
       </section>
 
@@ -584,7 +649,7 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
+  &copy;  2014 - 
   <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
@@ -604,6 +669,22 @@
 </div>
 
         
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
 
         
       </div>
@@ -706,6 +787,10 @@
 
   
     
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
   
 
 
@@ -720,6 +805,9 @@
   
 
   
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
 
 </body>
 </html>
